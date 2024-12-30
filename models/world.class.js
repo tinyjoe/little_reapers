@@ -1,7 +1,7 @@
 class World {
   reaper = new Reaper();
   enemies = [new Skeleton(), new Skeleton(), new Skeleton()];
-  hands = new Hands();
+  ghosts = [new Ghost(), new Ghost(), new Ghost()];
   canvas;
   ctx;
 
@@ -23,13 +23,9 @@ class World {
     this.enemies.forEach((e) => {
       this.ctx.drawImage(e.img, e.positionX, e.positionY, e.height, e.width);
     });
-    this.ctx.drawImage(
-      this.hands.img,
-      this.hands.positionX,
-      this.hands.positionY,
-      this.hands.height,
-      this.hands.width
-    );
+    this.ghosts.forEach((g) => {
+      this.ctx.drawImage(g.img, g.positionX, g.positionY, g.height, g.width);
+    });
     let self = this;
     requestAnimationFrame(function () {
       self.draw();

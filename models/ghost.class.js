@@ -1,6 +1,6 @@
-class Hands extends MovableObject {
+class Ghost extends MovableObject {
   constructor() {
-    super().loadImage("./img/game_background/layers/8.png");
+    super().loadImage("./img/game_background/layers/10.png");
     this.height = 200;
     this.width = 100;
     this.positionY = 0;
