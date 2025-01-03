@@ -1,9 +1,15 @@
 class Ghost extends MovableObject {
   constructor() {
     super().loadImage("./img/game_background/layers/10.png");
-    this.height = 200;
+    this.height = 150;
     this.width = 100;
-    this.positionY = 0;
-    this.positionX = Math.random() * 500;
+    this.animate();
+  }
+
+  animate() {
+    setInterval(() => {
+      this.positionY = Math.random() * 150;
+      this.positionX = Math.random() * 850;
+    }, 2000);
   }
 }
