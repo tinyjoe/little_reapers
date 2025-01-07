@@ -1,36 +1,32 @@
 class World {
   reaper = new Reaper();
-  enemies = [new Skeleton(), new Skeleton(), new Skeleton()];
-  ghosts = [new Ghost(), new Ghost(), new Ghost()];
-  backgroundObjects = [
-    new Background("./img/game_background/layers/1.png", 0),
-    new Background("./img/game_background/layers/2.png", 0),
-    new Background("./img/game_background/layers/3.png", 0),
-    new Background("./img/game_background/layers/4.png", 0),
-    new Background("./img/game_background/layers/5.png", 0),
-  ];
-  foregroundObjects = [
-    new Background("./img/game_background/layers/6.png", 0),
-    new Background("./img/game_background/layers/7.png", 0),
-    new Background("./img/game_background/layers/8.png", 0),
-    new Background("./img/game_background/layers/9.png", 0),
-  ];
+  level = level1;
   canvas;
   ctx;
+  keyboard;
+  cameraX = 0;
 
-  constructor(canvas) {
+  constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
+    this.keyboard = keyboard;
     this.draw();
+    this.setWorld();
+  }
+
+  setWorld() {
+    this.reaper.world = this;
   }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.addObjectsToMap(this.backgroundObjects);
-    this.addObjectsToMap(this.ghosts);
-    this.addObjectsToMap(this.foregroundObjects);
+    this.ctx.translate(this.cameraX, 0);
+    this.addObjectsToMap(this.level.backgroundObjects);
+    this.addObjectsToMap(this.level.ghosts);
+    this.addObjectsToMap(this.level.foregroundObjects);
+    this.addObjectsToMap(this.level.enemies);
     this.addToMap(this.reaper);
-    this.addObjectsToMap(this.enemies);
+    this.ctx.translate(-this.cameraX, 0);
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -44,6 +40,24 @@ class World {
   }
 
   addToMap(mo) {
+    if (mo.otherDirection) {
+      this.flipImage(mo);
+    }
     this.ctx.drawImage(mo.img, mo.positionX, mo.positionY, mo.width, mo.height);
+    if (mo.otherDirection) {
+      this.flipImageBack(mo);
+    }
+  }
+
+  flipImage(mo) {
+    this.ctx.save();
+    this.ctx.translate(mo.width, 0);
+    this.ctx.scale(-1, 1);
+    mo.positionX = mo.positionX * -1;
+  }
+
+  flipImageBack(mo) {
+    this.ctx.restore();
+    mo.positionX = mo.positionX * -1;
   }
 }
