@@ -2,7 +2,7 @@ let backgroundObjects = [];
 let foregroundObjects = [];
 
 const level1 = new Level(
-  [new Skeleton(), new Skeleton(), new Skeleton()],
+  [new Skeleton(), new Skeleton(), new Skeleton(), new Endboss()],
   [new Ghost(), new Ghost(), new Ghost()],
   setBackgroundObjects(),
   setForegroundObjects()

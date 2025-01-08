@@ -25,7 +25,7 @@ class Skeleton extends MovableObject {
     "./img/skeleton/Walking/0_Skeleton_Warrior_Walking_022.png",
     "./img/skeleton/Walking/0_Skeleton_Warrior_Walking_023.png",
   ];
-  currentImage = 0;
+  positionY = 325;
 
   constructor() {
     super().loadImage(
@@ -40,10 +40,7 @@ class Skeleton extends MovableObject {
   animate() {
     this.moveLeft();
     setInterval((r) => {
-      let index = this.currentImage % this.IMAGES_WALKING.length;
-      let path = this.IMAGES_WALKING[index];
-      this.img = this.imageCache[path];
-      this.currentImage++;
+      this.playAnimation(this.IMAGES_WALKING);
     }, 60);
   }
 }
