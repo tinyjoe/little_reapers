@@ -9,7 +9,7 @@ const level1 = new Level(
 );
 
 function setBackgroundObjects() {
-  for (let i = -50; i < 1920; i += 960) {
+  for (let i = -50; i < 3030; i += 960) {
     backgroundObjects.push(
       new Background("./img/game_background/layers/1.png", i),
       new Background("./img/game_background/layers/2.png", i),
@@ -22,7 +22,7 @@ function setBackgroundObjects() {
 }
 
 function setForegroundObjects() {
-  for (let i = -960; i < 2880; i += 960) {
+  for (let i = -50; i < 3030; i += 960) {
     foregroundObjects.push(
       new Background("./img/game_background/layers/6.png", i),
       new Background("./img/game_background/layers/7.png", i),

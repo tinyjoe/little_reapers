@@ -12,10 +12,22 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.checkCollisions();
   }
 
   setWorld() {
     this.reaper.world = this;
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level.enemies.forEach((e) => {
+        if (this.reaper.isColliding(e)) {
+          this.reaper.hit();
+          console.log(this.reaper.isDead());
+        }
+      });
+    }, 200);
   }
 
   draw() {
@@ -44,8 +56,23 @@ class World {
       this.flipImage(mo);
     }
     this.ctx.drawImage(mo.img, mo.positionX, mo.positionY, mo.width, mo.height);
+    this.drawRectangle(mo);
     if (mo.otherDirection) {
       this.flipImageBack(mo);
+    }
+  }
+
+  drawRectangle(mo) {
+    if (
+      mo instanceof Reaper ||
+      mo instanceof Skeleton ||
+      mo instanceof Endboss
+    ) {
+      this.ctx.beginPath();
+      this.ctx.lineWidth = "5";
+      this.ctx.strokeStyle = "blue";
+      this.ctx.rect(mo.positionX, mo.positionY, mo.width, mo.height);
+      this.ctx.stroke();
     }
   }
 

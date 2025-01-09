@@ -10,6 +10,9 @@ class MovableObject {
   currentImage = 0;
   speedY = 0;
   acceleration = 2;
+  energy = 100;
+  offsetY = 0;
+  offsetX = 0;
 
   loadImage(path) {
     this.img = new Image();
@@ -25,15 +28,13 @@ class MovableObject {
   }
 
   moveRight() {
-    setInterval(() => {
-      this.positionX += this.speed;
-    }, 1000 / 60);
+    this.positionX += this.speed;
+    this.otherDirection = false;
   }
 
   moveLeft() {
-    setInterval(() => {
-      this.positionX -= this.speed;
-    }, 10);
+    this.positionX -= this.speed;
+    this.otherDirection = true;
   }
 
   playAnimation(images) {
@@ -48,11 +49,40 @@ class MovableObject {
       if (this.isAboveGround() || this.speedY > 0) {
         this.positionY -= this.speedY;
         this.speedY -= this.acceleration;
+        if (this.otherDirection) {
+          this.positionX -= this.acceleration * 3;
+        } else {
+          this.positionX += this.acceleration * 3;
+        }
       }
     }, 1000 / 20);
   }
 
   isAboveGround() {
     return this.positionY < 325;
+  }
+
+  jump() {
+    this.speedY = 25;
+  }
+
+  isColliding(mo) {
+    return (
+      this.positionX + this.width - this.offsetX >= mo.positionX &&
+      this.positionX - this.offsetX <= mo.positionX + mo.width &&
+      this.positionY + this.offsetY + this.height >= mo.positionY &&
+      this.positionY + this.offsetY <= mo.positionY + mo.height
+    );
+  }
+
+  hit() {
+    this.energy -= 5;
+    if (this.energy < 0) {
+      this.energy = 0;
+    }
+  }
+
+  isDead() {
+    return this.energy == 0;
   }
 }

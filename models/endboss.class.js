@@ -23,7 +23,7 @@ class Endboss extends MovableObject {
   width = 400;
   height = 300;
   positionY = 220;
-  positionX = 500;
+  positionX = 1800;
 
   constructor() {
     super().loadImage("./img/endboss/Idle/Minotaur_03_Idle_000.png");

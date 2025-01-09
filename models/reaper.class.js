@@ -40,7 +40,26 @@ class Reaper extends MovableObject {
     "./img/reaper_man/Falling Down/0_Reaper_Man_Falling Down_004.png",
     "./img/reaper_man/Falling Down/0_Reaper_Man_Falling Down_005.png",
   ];
+  IMAGES_DYING = [
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_000.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_001.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_002.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_003.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_004.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_005.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_006.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_007.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_008.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_009.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_010.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_011.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_012.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_013.png",
+    "./img/reaper_man/Dying/0_Reaper_Man_Dying_014.png",
+  ];
   speed = 0.75;
+  offsetY = 150;
+  offsetX = 150;
 
   walking_sound = new Audio("audio/reaper_walking.wav");
 
@@ -48,6 +67,7 @@ class Reaper extends MovableObject {
     super().loadImage("./img/reaper_man/Idle/0_Reaper_Man_Idle_000.png");
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_JUMPING);
+    this.loadImages(this.IMAGES_DYING);
     this.applyGravity();
     this.animate();
   }
@@ -59,30 +79,45 @@ class Reaper extends MovableObject {
         this.world.keyboard.RIGHT &&
         this.positionX < this.world.level.levelEndX
       ) {
-        this.positionX += this.speed;
-        this.otherDirection = false;
+        this.moveRight();
         this.walking_sound.play();
       }
       if (this.world.keyboard.LEFT && this.positionX > 0) {
-        this.positionX -= this.speed;
-        this.otherDirection = true;
+        this.moveLeft();
         this.walking_sound.play();
       }
-      if (this.world.keyboard.UP) {
-        this.speedY = 20;
+      if (
+        this.world.keyboard.JUMP &&
+        !this.isAboveGround() &&
+        !this.otherDirection &&
+        this.positionX < this.world.level.levelEndX
+      ) {
+        this.speedY = 25;
+        //this.jump();
+      }
+      if (
+        this.world.keyboard.JUMP &&
+        !this.isAboveGround() &&
+        this.otherDirection &&
+        this.positionX > 100
+      ) {
+        this.speedY = 25;
+        //this.jump();
       }
       this.world.cameraX = -this.positionX + 30;
     }, 1000 / 100);
 
     setInterval((r) => {
-      if (this.isAboveGround()) {
+      if (this.isDead()) {
+        this.playAnimation(this.IMAGES_DYING);
+      } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {
         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
           this.playAnimation(this.IMAGES_WALKING);
         }
       }
-    }, 60);
+    }, 40);
   }
 
   jump() {}
