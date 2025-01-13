@@ -1,31 +1,12 @@
-class MovableObject {
-  positionX = 0;
-  positionY = 150; //325
-  img;
-  height = 200;
-  width = 200;
-  imageCache = {};
+class MovableObject extends DrawableObject {
   speed = 0.15;
   otherDirection = false;
-  currentImage = 0;
   speedY = 0;
   acceleration = 2;
   energy = 100;
   offsetY = 0;
   offsetX = 0;
-
-  loadImage(path) {
-    this.img = new Image();
-    this.img.src = path;
-  }
-
-  loadImages(arr) {
-    arr.forEach((path) => {
-      let img = new Image();
-      img.src = path;
-      this.imageCache[path] = img;
-    });
-  }
+  lastHit = 0;
 
   moveRight() {
     this.positionX += this.speed;
@@ -59,7 +40,11 @@ class MovableObject {
   }
 
   isAboveGround() {
-    return this.positionY < 325;
+    if (this instanceof ThrowableObject) {
+      return true;
+    } else {
+      return this.positionY < 325;
+    }
   }
 
   jump() {
@@ -79,10 +64,17 @@ class MovableObject {
     this.energy -= 5;
     if (this.energy < 0) {
       this.energy = 0;
+    } else {
+      this.lastHit = new Date().getTime();
     }
   }
 
   isDead() {
     return this.energy == 0;
+  }
+
+  isHurt() {
+    let timespan = new Date().getTime() - this.lastHit;
+    return timespan < 1500;
   }
 }

@@ -5,6 +5,8 @@ class World {
   ctx;
   keyboard;
   cameraX = 0;
+  statusBar = new Statusbar();
+  throwableObjects = [];
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -12,22 +14,37 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.checkCollisions();
+    this.run();
   }
 
   setWorld() {
     this.reaper.world = this;
   }
 
-  checkCollisions() {
+  run() {
     setInterval(() => {
-      this.level.enemies.forEach((e) => {
-        if (this.reaper.isColliding(e)) {
-          this.reaper.hit();
-          console.log(this.reaper.isDead());
-        }
-      });
+      this.checkCollisions();
+      this.checkThrowObjects();
     }, 200);
+  }
+
+  checkThrowObjects() {
+    if (this.keyboard.THROW) {
+      let bottle = new ThrowableObject(
+        this.reaper.positionX + 50,
+        this.reaper.positionY + 50
+      );
+      this.throwableObjects.push(bottle);
+    }
+  }
+
+  checkCollisions() {
+    this.level.enemies.forEach((e) => {
+      if (this.reaper.isColliding(e)) {
+        this.reaper.hit();
+        this.statusBar.setPercentage(this.reaper.energy);
+      }
+    });
   }
 
   draw() {
@@ -36,8 +53,12 @@ class World {
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.ghosts);
     this.addObjectsToMap(this.level.foregroundObjects);
+    this.ctx.translate(-this.cameraX, 0);
+    this.addToMap(this.statusBar);
+    this.ctx.translate(this.cameraX, 0);
     this.addObjectsToMap(this.level.enemies);
     this.addToMap(this.reaper);
+    this.addObjectsToMap(this.throwableObjects);
     this.ctx.translate(-this.cameraX, 0);
     let self = this;
     requestAnimationFrame(function () {

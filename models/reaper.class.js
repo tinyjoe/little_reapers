@@ -57,6 +57,20 @@ class Reaper extends MovableObject {
     "./img/reaper_man/Dying/0_Reaper_Man_Dying_013.png",
     "./img/reaper_man/Dying/0_Reaper_Man_Dying_014.png",
   ];
+  IMAGES_HURTING = [
+    "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_000.png",
+    "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_001.png",
+    "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_002.png",
+    "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_003.png",
+    "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_004.png",
+    "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_005.png",
+    "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_006.png",
+    "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_007.png",
+    "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_008.png",
+    "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_009.png",
+    "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_010.png",
+    "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_011.png",
+  ];
   speed = 0.75;
   offsetY = 150;
   offsetX = 150;
@@ -68,6 +82,7 @@ class Reaper extends MovableObject {
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_JUMPING);
     this.loadImages(this.IMAGES_DYING);
+    this.loadImages(this.IMAGES_HURTING);
     this.applyGravity();
     this.animate();
   }
@@ -110,6 +125,8 @@ class Reaper extends MovableObject {
     setInterval((r) => {
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DYING);
+      } else if (this.isHurt()) {
+        this.playAnimation(this.IMAGES_HURTING);
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {

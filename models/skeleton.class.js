@@ -28,14 +28,14 @@ class Skeleton extends MovableObject {
   height = 150;
   width = 150;
   positionY = 370;
-  offsetY = 100;
-  offsetX = 100;
+  offsetY = 70;
+  offsetX = 70;
 
   constructor() {
     super().loadImage(
       "./img/skeleton/Walking/0_Skeleton_Warrior_Walking_000.png"
     );
-    this.positionX = 300 + Math.random() * 850;
+    this.positionX = 300 + Math.random() * 1600;
     this.speed = 0.15 + Math.random() * 0.25;
     this.loadImages(this.IMAGES_WALKING);
     this.animate();
