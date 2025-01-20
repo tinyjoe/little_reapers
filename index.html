@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Little Reapers</title>
+    <link
+      rel="shortcut icon"
+      href="img/little_reapers_favicon.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="fonts/fonts.css" />
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
     <script src="models/throwable-object.class.js"></script>
@@ -20,8 +26,22 @@
     <script src="models/keyboard.class.js"></script>
     <script src="js/game.js"></script>
   </head>
-  <body onload="init()">
-    <h1>Little Reapers</h1>
-    <canvas id="gameCanvas" width="960" height="540"> </canvas>
+  <body>
+    <div id="startscreen" class="startscreen">
+      <div class="infoRow">
+        <button class="helpButton"></button>
+        <button class="startButton" onclick="init()"></button>
+      </div>
+      <div class="legalRow">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutzerklärung</a>
+      </div>
+    </div>
+    <div id="gamescreen" class="gamescreen hidden">
+      <h1>Little Reapers</h1>
+      <div id="fullscreen">
+        <canvas id="gameCanvas" width="960" height="540"> </canvas>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,12 +1,22 @@
 let backgroundObjects = [];
 let foregroundObjects = [];
+let level1;
 
-const level1 = new Level(
+/*const level1 = new Level(
   [new Skeleton(), new Skeleton(), new Skeleton(), new Endboss()],
   [new Ghost(), new Ghost(), new Ghost()],
   setBackgroundObjects(),
   setForegroundObjects()
-);
+);*/
+
+function initLevel() {
+  level1 = new Level(
+    [new Skeleton(), new Skeleton(), new Skeleton(), new Endboss()],
+    [new Ghost(), new Ghost(), new Ghost()],
+    setBackgroundObjects(),
+    setForegroundObjects()
+  );
+}
 
 function setBackgroundObjects() {
   for (let i = -50; i < 3030; i += 960) {

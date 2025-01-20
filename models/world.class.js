@@ -14,6 +14,7 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.initLevel();
     this.run();
   }
 

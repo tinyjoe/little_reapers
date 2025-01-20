@@ -1,9 +1,15 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let gameScreen;
+let startScreen;
 
 function init() {
   canvas = document.getElementById("gameCanvas");
+  gameScreen = document.getElementById("gamescreen");
+  startScreen = document.getElementById("startscreen");
+  startScreen.classList.add("hidden");
+  gameScreen.classList.remove("hidden");
   world = new World(canvas, keyboard);
 }
 

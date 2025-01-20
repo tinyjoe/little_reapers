@@ -24,6 +24,7 @@ class Endboss extends MovableObject {
   height = 300;
   positionY = 220;
   positionX = 1800;
+  hadFirstContact = false;
 
   constructor() {
     super().loadImage("./img/endboss/Idle/Minotaur_03_Idle_000.png");
