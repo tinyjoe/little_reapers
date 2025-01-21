@@ -72,8 +72,8 @@ class Reaper extends MovableObject {
     "./img/reaper_man/Hurt/0_Reaper_Man_Hurt_011.png",
   ];
   speed = 0.75;
-  offsetY = 150;
-  offsetX = 150;
+  offsetY = 90;
+  offsetX = 90;
 
   walking_sound = new Audio("audio/reaper_walking.wav");
 
@@ -122,9 +122,9 @@ class Reaper extends MovableObject {
       this.world.cameraX = -this.positionX + 30;
     }, 1000 / 100);
 
-    setInterval((r) => {
+    setInterval(() => {
       if (this.isDead()) {
-        this.playAnimation(this.IMAGES_DYING);
+        this.playAnimationOnce(this.IMAGES_DYING);
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURTING);
       } else if (this.isAboveGround()) {

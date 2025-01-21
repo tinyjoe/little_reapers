@@ -10,6 +10,7 @@ function init() {
   startScreen = document.getElementById("startscreen");
   startScreen.classList.add("hidden");
   gameScreen.classList.remove("hidden");
+  initLevel();
   world = new World(canvas, keyboard);
 }
 

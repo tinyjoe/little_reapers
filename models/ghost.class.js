@@ -9,7 +9,7 @@ class Ghost extends MovableObject {
   animate() {
     setInterval(() => {
       this.positionY = Math.random() * 150;
-      this.positionX = Math.random() * 850;
+      this.positionX = Math.random() * 2000;
     }, 2000);
   }
 }

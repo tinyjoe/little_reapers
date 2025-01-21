@@ -1,20 +1,17 @@
 let backgroundObjects = [];
 let foregroundObjects = [];
+let enemies = [];
+let backgroundGhosts = [];
+let reaperCoins = [];
 let level1;
-
-/*const level1 = new Level(
-  [new Skeleton(), new Skeleton(), new Skeleton(), new Endboss()],
-  [new Ghost(), new Ghost(), new Ghost()],
-  setBackgroundObjects(),
-  setForegroundObjects()
-);*/
 
 function initLevel() {
   level1 = new Level(
-    [new Skeleton(), new Skeleton(), new Skeleton(), new Endboss()],
-    [new Ghost(), new Ghost(), new Ghost()],
+    setEnemies(),
+    setBackgroundGhosts(),
     setBackgroundObjects(),
-    setForegroundObjects()
+    setForegroundObjects(),
+    [new Skull()]
   );
 }
 
@@ -41,4 +38,19 @@ function setForegroundObjects() {
     );
   }
   return foregroundObjects;
+}
+
+function setEnemies() {
+  for (let i = 0; i <= 7; i++) {
+    enemies.push(new Skeleton());
+  }
+  enemies.push(new Endboss());
+  return enemies;
+}
+
+function setBackgroundGhosts() {
+  for (let i = 0; i <= 15; i++) {
+    backgroundGhosts.push(new Ghost());
+  }
+  return backgroundGhosts;
 }

@@ -14,7 +14,6 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.initLevel();
     this.run();
   }
 
@@ -33,7 +32,7 @@ class World {
     if (this.keyboard.THROW) {
       let bottle = new ThrowableObject(
         this.reaper.positionX + 50,
-        this.reaper.positionY + 50
+        this.reaper.positionY + 30
       );
       this.throwableObjects.push(bottle);
     }
@@ -58,6 +57,7 @@ class World {
     this.addToMap(this.statusBar);
     this.ctx.translate(this.cameraX, 0);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.skulls);
     this.addToMap(this.reaper);
     this.addObjectsToMap(this.throwableObjects);
     this.ctx.translate(-this.cameraX, 0);
@@ -78,23 +78,8 @@ class World {
       this.flipImage(mo);
     }
     this.ctx.drawImage(mo.img, mo.positionX, mo.positionY, mo.width, mo.height);
-    this.drawRectangle(mo);
     if (mo.otherDirection) {
       this.flipImageBack(mo);
-    }
-  }
-
-  drawRectangle(mo) {
-    if (
-      mo instanceof Reaper ||
-      mo instanceof Skeleton ||
-      mo instanceof Endboss
-    ) {
-      this.ctx.beginPath();
-      this.ctx.lineWidth = "5";
-      this.ctx.strokeStyle = "blue";
-      this.ctx.rect(mo.positionX, mo.positionY, mo.width, mo.height);
-      this.ctx.stroke();
     }
   }
 

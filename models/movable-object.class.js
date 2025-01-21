@@ -25,6 +25,13 @@ class MovableObject extends DrawableObject {
     this.currentImage++;
   }
 
+  playAnimationOnce(images) {
+    for (let index = 0; index < images.length; index++) {
+      const path = images[index];
+      this.img = this.imageCache[path];
+    }
+  }
+
   applyGravity() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -53,10 +60,11 @@ class MovableObject extends DrawableObject {
 
   isColliding(mo) {
     return (
-      this.positionX + this.width - this.offsetX >= mo.positionX &&
-      this.positionX - this.offsetX <= mo.positionX + mo.width &&
-      this.positionY + this.offsetY + this.height >= mo.positionY &&
-      this.positionY + this.offsetY <= mo.positionY + mo.height
+      this.positionX + this.width - this.offsetX >= mo.positionX + mo.offsetX &&
+      this.positionX + this.offsetX <= mo.positionX + mo.width - mo.offsetX &&
+      this.positionY + this.height - this.offsetY >=
+        mo.positionY + mo.offsetY &&
+      this.positionY + this.offsetY <= mo.positionY + mo.height - mo.offsetY
     );
   }
 
@@ -75,6 +83,6 @@ class MovableObject extends DrawableObject {
 
   isHurt() {
     let timespan = new Date().getTime() - this.lastHit;
-    return timespan < 1500;
+    return timespan < 10000;
   }
 }

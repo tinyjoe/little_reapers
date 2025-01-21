@@ -23,7 +23,7 @@ class Endboss extends MovableObject {
   width = 400;
   height = 300;
   positionY = 220;
-  positionX = 1800;
+  positionX = 2600;
   hadFirstContact = false;
 
   constructor() {

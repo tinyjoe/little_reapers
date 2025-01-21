@@ -28,8 +28,8 @@ class Skeleton extends MovableObject {
   height = 150;
   width = 150;
   positionY = 370;
-  offsetY = 70;
-  offsetX = 70;
+  offsetY = 50;
+  offsetX = 50;
 
   constructor() {
     super().loadImage(
