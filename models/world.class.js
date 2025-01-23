@@ -5,7 +5,8 @@ class World {
   ctx;
   keyboard;
   cameraX = 0;
-  statusBar = new Statusbar();
+  statusBar = new Statusbar(REAPER_HEALTH, 30);
+  endbossBar = new Statusbar(ENDBOSS_HEALTH, 730);
   throwableObjects = [];
 
   constructor(canvas, keyboard) {
@@ -29,12 +30,14 @@ class World {
   }
 
   checkThrowObjects() {
-    if (this.keyboard.THROW) {
+    if (this.keyboard.THROW && this.throwableObjects.length < 10) {
       let bottle = new ThrowableObject(
         this.reaper.positionX + 50,
         this.reaper.positionY + 30
       );
       this.throwableObjects.push(bottle);
+    } else if (this.keyboard.THROW && this.throwableObjects.length >= 10) {
+      console.log("No more bottles available");
     }
   }
 
@@ -42,7 +45,7 @@ class World {
     this.level.enemies.forEach((e) => {
       if (this.reaper.isColliding(e)) {
         this.reaper.hit();
-        this.statusBar.setPercentage(this.reaper.energy);
+        this.statusBar.setPercentage(this.reaper.energy, this.REAPER_HEALTH);
       }
     });
   }
@@ -55,6 +58,7 @@ class World {
     this.addObjectsToMap(this.level.foregroundObjects);
     this.ctx.translate(-this.cameraX, 0);
     this.addToMap(this.statusBar);
+    this.addToMap(this.endbossBar);
     this.ctx.translate(this.cameraX, 0);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.skulls);

@@ -19,7 +19,6 @@ class Endboss extends MovableObject {
     "./img/endboss/Walking/Minotaur_03_Walking_016.png",
     "./img/endboss/Walking/Minotaur_03_Walking_017.png",
   ];
-
   width = 400;
   height = 300;
   positionY = 220;

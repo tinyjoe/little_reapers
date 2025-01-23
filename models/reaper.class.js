@@ -107,8 +107,7 @@ class Reaper extends MovableObject {
         !this.otherDirection &&
         this.positionX < this.world.level.levelEndX
       ) {
-        this.speedY = 25;
-        //this.jump();
+        this.jump();
       }
       if (
         this.world.keyboard.JUMP &&
@@ -116,8 +115,7 @@ class Reaper extends MovableObject {
         this.otherDirection &&
         this.positionX > 100
       ) {
-        this.speedY = 25;
-        //this.jump();
+        this.jump();
       }
       this.world.cameraX = -this.positionX + 30;
     }, 1000 / 100);
@@ -137,5 +135,7 @@ class Reaper extends MovableObject {
     }, 40);
   }
 
-  jump() {}
+  jump() {
+    this.speedY = 25;
+  }
 }

@@ -32,6 +32,13 @@ a:hover {
   color: green;
 }
 
+h3 {
+  color: chartreuse;
+  font-size: 40pt;
+  font-weight: 800;
+  text-align: left;
+}
+
 .startscreen {
   display: flex;
   flex-direction: column;
