@@ -1,13 +1,19 @@
 class World {
+  count = 0;
   reaper = new Reaper();
   level = level1;
   canvas;
   ctx;
   keyboard;
   cameraX = 0;
-  statusBar = new Statusbar(REAPER_HEALTH, 30);
-  endbossBar = new Statusbar(ENDBOSS_HEALTH, 730);
+  statusBar = new ReaperHealth();
+  endbossBar = new EndbossHealth();
+  bottleCounter = new BottleCounter(10);
+  coinsCounter = new CoinsCounter(this.count);
   throwableObjects = [];
+  coinSound = new Audio("audio/coin.wav");
+  throwSound = new Audio("audio/throw.wav");
+  noBottleSound = new Audio("audio/none.mp3");
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -26,6 +32,7 @@ class World {
     setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
+      this.collectCoins();
     }, 200);
   }
 
@@ -36,8 +43,10 @@ class World {
         this.reaper.positionY + 30
       );
       this.throwableObjects.push(bottle);
+      this.throwSound.play();
+      this.bottleCounter.setCounter(10 - this.throwableObjects.length);
     } else if (this.keyboard.THROW && this.throwableObjects.length >= 10) {
-      console.log("No more bottles available");
+      this.noBottleSound.play();
     }
   }
 
@@ -45,8 +54,19 @@ class World {
     this.level.enemies.forEach((e) => {
       if (this.reaper.isColliding(e)) {
         this.reaper.hit();
-        this.statusBar.setPercentage(this.reaper.energy, this.REAPER_HEALTH);
+        this.statusBar.setPercentage(this.reaper.energy);
       }
+    });
+  }
+
+  collectCoins() {
+    this.level.coins.forEach((c) => {
+      if (this.reaper.isColliding(c)) {
+        this.count++;
+        c.disappear();
+        this.coinSound.play();
+      }
+      this.coinsCounter.setCounter(this.count);
     });
   }
 
@@ -59,9 +79,11 @@ class World {
     this.ctx.translate(-this.cameraX, 0);
     this.addToMap(this.statusBar);
     this.addToMap(this.endbossBar);
+    this.addToMap(this.bottleCounter);
+    this.addToMap(this.coinsCounter);
     this.ctx.translate(this.cameraX, 0);
     this.addObjectsToMap(this.level.enemies);
-    this.addObjectsToMap(this.level.skulls);
+    this.addObjectsToMap(this.level.coins);
     this.addToMap(this.reaper);
     this.addObjectsToMap(this.throwableObjects);
     this.ctx.translate(-this.cameraX, 0);

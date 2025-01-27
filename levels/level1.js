@@ -11,7 +11,7 @@ function initLevel() {
     setBackgroundGhosts(),
     setBackgroundObjects(),
     setForegroundObjects(),
-    [new Skull()]
+    setReaperCoins()
   );
 }
 
@@ -49,8 +49,15 @@ function setEnemies() {
 }
 
 function setBackgroundGhosts() {
-  for (let i = 0; i <= 15; i++) {
+  for (let i = 0; i <= 7; i++) {
     backgroundGhosts.push(new Ghost());
   }
   return backgroundGhosts;
+}
+
+function setReaperCoins() {
+  for (let i = 0; i <= 14; i++) {
+    reaperCoins.push(new Coin());
+  }
+  return reaperCoins;
 }

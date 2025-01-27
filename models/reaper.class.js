@@ -75,7 +75,8 @@ class Reaper extends MovableObject {
   offsetY = 90;
   offsetX = 90;
 
-  walking_sound = new Audio("audio/reaper_walking.wav");
+  walkingSound = new Audio("audio/reaper_walking.wav");
+  jumpingSound = new Audio("audio/jump.wav");
 
   constructor() {
     super().loadImage("./img/reaper_man/Idle/0_Reaper_Man_Idle_000.png");
@@ -89,17 +90,17 @@ class Reaper extends MovableObject {
 
   animate() {
     setInterval(() => {
-      this.walking_sound.pause();
+      this.walkingSound.pause();
       if (
         this.world.keyboard.RIGHT &&
         this.positionX < this.world.level.levelEndX
       ) {
         this.moveRight();
-        this.walking_sound.play();
+        this.walkingSound.play();
       }
       if (this.world.keyboard.LEFT && this.positionX > 0) {
         this.moveLeft();
-        this.walking_sound.play();
+        this.walkingSound.play();
       }
       if (
         this.world.keyboard.JUMP &&
@@ -108,6 +109,7 @@ class Reaper extends MovableObject {
         this.positionX < this.world.level.levelEndX
       ) {
         this.jump();
+        this.jumpingSound.play();
       }
       if (
         this.world.keyboard.JUMP &&
@@ -116,6 +118,7 @@ class Reaper extends MovableObject {
         this.positionX > 100
       ) {
         this.jump();
+        this.jumpingSound.play();
       }
       this.world.cameraX = -this.positionX + 30;
     }, 1000 / 100);

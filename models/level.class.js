@@ -3,14 +3,14 @@ class Level {
   ghosts;
   backgroundObjects;
   foregroundObjects;
-  skulls;
+  coins;
   levelEndX = 2800;
 
-  constructor(enemies, ghosts, backgroundObjects, foregroundObjects, skulls) {
+  constructor(enemies, ghosts, backgroundObjects, foregroundObjects, coins) {
     this.enemies = enemies;
     this.ghosts = ghosts;
     this.backgroundObjects = backgroundObjects;
     this.foregroundObjects = foregroundObjects;
-    this.skulls = skulls;
+    this.coins = coins;
   }
 }

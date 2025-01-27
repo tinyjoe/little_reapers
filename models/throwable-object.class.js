@@ -1,4 +1,7 @@
 class ThrowableObject extends MovableObject {
+  offsetX = 0;
+  offsetY = 0;
+
   constructor(x, y) {
     super().loadImage("./img/elements/bottle.png");
     this.positionX = x;

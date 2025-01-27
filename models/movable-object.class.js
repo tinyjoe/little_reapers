@@ -46,6 +46,14 @@ class MovableObject extends DrawableObject {
     }, 1000 / 20);
   }
 
+  disappear() {
+    setInterval(() => {
+      this.positionX = 460;
+      this.positionY += this.speedY;
+      this.speedY -= this.acceleration * 3;
+    }, 1000 / 20);
+  }
+
   isAboveGround() {
     if (this instanceof ThrowableObject) {
       return true;
