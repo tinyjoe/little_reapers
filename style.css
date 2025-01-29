@@ -4,9 +4,12 @@ body {
   align-items: center;
   margin: 0;
   height: 100vh;
+  background-color: #1c2836;
   background-image: url("img/game_background/3_screen_background.png");
   background-size: cover;
   background-position: center;
+  font-family: "poppinsregular";
+  color: white;
 }
 
 canvas {
@@ -33,8 +36,10 @@ a:hover {
 }
 
 h3 {
+  font-family: "creepsterregular";
   color: chartreuse;
   font-size: 40pt;
+  margin: 0px;
   font-weight: 800;
   text-align: left;
 }
@@ -89,7 +94,7 @@ h3 {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .infoRow {
@@ -108,6 +113,140 @@ h3 {
   gap: 50px;
   position: absolute;
   bottom: 30px;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #131c23bc;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px;
+}
+
+.overlayContent {
+  display: flex;
+  gap: 10px;
+  align-items: top;
+}
+
+.infoDialog {
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 650px;
+  height: 400px;
+  gap: 60px;
+  border: 1px solid chartreuse;
+  border-radius: 20px;
+  background-color: #1c2836;
+}
+
+.keyButton {
+  width: 60px;
+  height: 60px;
+}
+
+.moveButton {
+  width: 180px;
+}
+
+.keyButtonSmall {
+  width: 30px;
+  height: 30px;
+}
+
+.moveButtonSmall {
+  width: 90px;
+}
+
+.closeButton {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  background-image: url("img/elements/button_close.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  background-image: url("img/elements/button_close-hover.png");
+}
+
+.gameInfoRow {
+  display: flex;
+  width: 960px;
+  align-items: top;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.soundButton {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  background-image: url("img/elements/button_sound-off.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.soundButton:hover {
+  background-image: url("img/elements/button_sound-off-hover.png");
+}
+
+.expandButton {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  background-image: url("img/elements/button_expand.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.expandButton:hover {
+  background-image: url("img/elements/button_expand-hover.png");
+}
+
+.keyInfoRow {
+  display: flex;
+  gap: 80px;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.settingsRow {
+  display: flex;
+  gap: 30px;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.infoText {
+  color: whitesmoke;
+  font-size: 20px;
+  margin: 0px;
 }
 
 @media only screen and (max-width: 960px) {

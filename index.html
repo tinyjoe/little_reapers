@@ -33,7 +33,7 @@
   <body>
     <div id="startscreen" class="startscreen">
       <div class="infoRow">
-        <button class="helpButton"></button>
+        <button class="helpButton" onclick="showHelpDialog()"></button>
         <button class="startButton" onclick="init()"></button>
       </div>
       <div class="legalRow">
@@ -46,14 +46,30 @@
       <div id="fullscreen">
         <canvas id="gameCanvas" width="960" height="540"> </canvas>
       </div>
-      <div>
-        <div>
-          <p>> walk right</p>
-          <p>walk left</p>
-          <p>space jump</p>
-          <p>shift throw</p>
+      <div class="gameInfoRow">
+        <div class="keyInfoRow">
+          <div class="infoContent">
+            <img
+              class="moveButtonSmall"
+              src="./img/elements/buttons_move_reaper.png"
+            />
+            <p class="infoText">Move Reaper</p>
+          </div>
+          <div class="infoContent">
+            <img class="keyButtonSmall" src="./img/elements/button_space.png" />
+            <p class="infoText">Jump</p>
+          </div>
+          <div class="infoContent">
+            <img class="keyButtonSmall" src="./img/elements/button_shift.png" />
+            <p class="infoText">Throw bottles</p>
+          </div>
+        </div>
+        <div class="settingsRow">
+          <button class="soundButton"></button>
+          <button class="expandButton"></button>
         </div>
       </div>
     </div>
+    <div id="info-dialog" class="overlay hidden"></div>
   </body>
 </html>
