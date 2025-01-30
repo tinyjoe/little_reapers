@@ -73,30 +73,46 @@ document.addEventListener("keydown", (event) => {
   if (event.keyCode === 16) {
     keyboard.THROW = true;
   }
+  if (event.keyCode === 27) {
+    keyboard.ESC = true;
+  }
 });
 
 document.addEventListener("keyup", (event) => {
   if (event.keyCode === 39) {
     keyboard.RIGHT = false;
   }
-
   if (event.keyCode === 37) {
     keyboard.LEFT = false;
   }
-
   if (event.keyCode === 38) {
     keyboard.UP = false;
   }
-
   if (event.keyCode === 40) {
     keyboard.DOWN = false;
   }
-
   if (event.keyCode === 32) {
     keyboard.JUMP = false;
   }
-
   if (event.keyCode === 16) {
     keyboard.THROW = false;
   }
+  if (event.keyCode === 27) {
+    keyboard.ESC = false;
+  }
 });
+
+function requestFullscreen(element) {
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  }
+}
+
+function enterFullscreen() {
+  canvas = document.getElementById("gameCanvas");
+  requestFullscreen(canvas);
+}

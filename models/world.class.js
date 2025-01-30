@@ -45,6 +45,15 @@ class World {
       this.throwableObjects.push(bottle);
       this.throwSound.play();
       this.bottleCounter.setCounter(10 - this.throwableObjects.length);
+      this.level.enemies.forEach((e) => {
+        if (bottle.isColliding(e) && e instanceof Skeleton) {
+          e.disappear();
+          console.log("Enemy hit");
+        } else if (bottle.isColliding(e) && e instanceof Endboss) {
+          e.hit();
+          this.endbossBar.setPercentage(e.energy);
+        }
+      });
     } else if (this.keyboard.THROW && this.throwableObjects.length >= 10) {
       this.noBottleSound.play();
     }

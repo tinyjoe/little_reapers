@@ -38,9 +38,9 @@ class MovableObject extends DrawableObject {
         this.positionY -= this.speedY;
         this.speedY -= this.acceleration;
         if (this.otherDirection) {
-          this.positionX -= this.acceleration * 3;
+          this.positionX -= this.acceleration;
         } else {
-          this.positionX += this.acceleration * 3;
+          this.positionX += this.acceleration;
         }
       }
     }, 1000 / 20);

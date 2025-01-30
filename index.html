@@ -42,11 +42,11 @@
       </div>
     </div>
     <div id="gamescreen" class="gamescreen hidden">
-      <h1>Little Reapers</h1>
+      <h1 id="headline">Little Reapers</h1>
       <div id="fullscreen">
         <canvas id="gameCanvas" width="960" height="540"> </canvas>
       </div>
-      <div class="gameInfoRow">
+      <div id="gameInfo" class="gameInfoRow">
         <div class="keyInfoRow">
           <div class="infoContent">
             <img
@@ -66,7 +66,11 @@
         </div>
         <div class="settingsRow">
           <button class="soundButton"></button>
-          <button class="expandButton"></button>
+          <button
+            id="expandButton"
+            class="expandButton"
+            onclick="enterFullscreen()"
+          ></button>
         </div>
       </div>
     </div>
