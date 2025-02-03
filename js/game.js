@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let isMuted = false;
 let gameScreen;
 let startScreen;
 
@@ -115,4 +116,9 @@ function requestFullscreen(element) {
 function enterFullscreen() {
   canvas = document.getElementById("gameCanvas");
   requestFullscreen(canvas);
+}
+
+function muteAllSounds() {
+  isMuted = !isMuted;
+  console.log("Sound is muted" + isMuted);
 }

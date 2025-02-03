@@ -78,11 +78,10 @@ class Endboss extends MovableObject {
   height = 300;
   positionY = 220;
   positionX = 2600;
-  hadFirstContact = false;
 
   constructor() {
     super().loadImage("./img/endboss/Idle/Minotaur_03_Idle_000.png");
-    this.speed = 0.35;
+    this.speed = 1.25;
     this.loadImages(this.IMAGES_SPAWNING);
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_HURTING);
@@ -92,18 +91,13 @@ class Endboss extends MovableObject {
 
   animate() {
     setInterval(() => {
-      this.playAnimation(this.IMAGES_SPAWNING);
-    }, 60);
-  }
-
-  startWalking() {
-    if (hadFirstContact) {
-    }
-    setInterval(() => {
-      this.playAnimation(this.IMAGES_WALKING);
-    }, 60);
-    setInterval(() => {
-      this.moveLeft();
-    }, 10);
+      if (this.isHurt()) {
+        this.playAnimation(this.IMAGES_HURTING);
+      } else if (this.isDead()) {
+        this.playAnimationOnce(this.IMAGES_DYING);
+      } else {
+        this.playAnimation(this.IMAGES_SPAWNING);
+      }
+    }, 50);
   }
 }

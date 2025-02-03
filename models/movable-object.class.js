@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
   offsetY = 0;
   offsetX = 0;
   lastHit = 0;
+  hasCollided = false;
 
   moveRight() {
     this.positionX += this.speed;
@@ -46,11 +47,12 @@ class MovableObject extends DrawableObject {
     }, 1000 / 20);
   }
 
-  disappear() {
+  disappear(mo) {
     setInterval(() => {
-      this.positionX = 460;
+      this.positionX = mo.positionX;
       this.positionY += this.speedY;
-      this.speedY -= this.acceleration * 3;
+      this.speedY += this.acceleration * 3;
+      mo.hasCollided = true;
     }, 1000 / 20);
   }
 
@@ -70,9 +72,24 @@ class MovableObject extends DrawableObject {
     return (
       this.positionX + this.width - this.offsetX >= mo.positionX + mo.offsetX &&
       this.positionX + this.offsetX <= mo.positionX + mo.width - mo.offsetX &&
-      this.positionY + this.height - this.offsetY >=
-        mo.positionY + mo.offsetY &&
-      this.positionY + this.offsetY <= mo.positionY + mo.height - mo.offsetY
+      this.positionY + this.height >= mo.positionY + mo.offsetY &&
+      this.positionY + this.offsetY <= mo.positionY + mo.height
+    );
+  }
+
+  isCrushing(mo) {
+    return (
+      this.positionX + this.width - this.offsetX >= mo.positionX + mo.offsetX &&
+      this.positionX + this.offsetX <= mo.positionX + mo.width - mo.offsetX &&
+      this.positionY + this.offsetY <= mo.positionY + mo.height
+    );
+  }
+
+  bottleHit(mo) {
+    return (
+      this.positionX + this.width - this.offsetX >= mo.positionX + mo.offsetX &&
+      this.positionY + this.height >= mo.positionY + mo.offsetY &&
+      this.positionY + this.offsetY <= mo.positionY + mo.height
     );
   }
 
@@ -91,6 +108,6 @@ class MovableObject extends DrawableObject {
 
   isHurt() {
     let timespan = new Date().getTime() - this.lastHit;
-    return timespan < 10000;
+    return timespan < 500;
   }
 }

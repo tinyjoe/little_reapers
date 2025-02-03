@@ -27,18 +27,18 @@ class Reaper extends MovableObject {
     "./img/reaper_man/Walking/0_Reaper_Man_Walking_023.png",
   ];
   IMAGES_JUMPING = [
-    "./img/reaper_man/Jump Start/0_Reaper_Man_Jump Start_000.png",
-    "./img/reaper_man/Jump Start/0_Reaper_Man_Jump Start_001.png",
-    "./img/reaper_man/Jump Start/0_Reaper_Man_Jump Start_002.png",
-    "./img/reaper_man/Jump Start/0_Reaper_Man_Jump Start_003.png",
-    "./img/reaper_man/Jump Start/0_Reaper_Man_Jump Start_004.png",
-    "./img/reaper_man/Jump Start/0_Reaper_Man_Jump Start_005.png",
-    "./img/reaper_man/Falling Down/0_Reaper_Man_Falling Down_000.png",
-    "./img/reaper_man/Falling Down/0_Reaper_Man_Falling Down_001.png",
-    "./img/reaper_man/Falling Down/0_Reaper_Man_Falling Down_002.png",
-    "./img/reaper_man/Falling Down/0_Reaper_Man_Falling Down_003.png",
-    "./img/reaper_man/Falling Down/0_Reaper_Man_Falling Down_004.png",
-    "./img/reaper_man/Falling Down/0_Reaper_Man_Falling Down_005.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_000.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_001.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_002.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_003.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_004.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_005.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_006.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_007.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_008.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_009.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_010.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_011.png",
   ];
   IMAGES_DYING = [
     "./img/reaper_man/Dying/0_Reaper_Man_Dying_000.png",
@@ -103,7 +103,7 @@ class Reaper extends MovableObject {
         this.walkingSound.play();
       }
       if (
-        this.world.keyboard.JUMP &&
+        (this.world.keyboard.JUMP || this.world.keyboard.UP) &&
         !this.isAboveGround() &&
         !this.otherDirection &&
         this.positionX < this.world.level.levelEndX
@@ -112,13 +112,19 @@ class Reaper extends MovableObject {
         this.jumpingSound.play();
       }
       if (
-        this.world.keyboard.JUMP &&
+        (this.world.keyboard.JUMP || this.world.keyboard.UP) &&
         !this.isAboveGround() &&
         this.otherDirection &&
         this.positionX > 100
       ) {
         this.jump();
         this.jumpingSound.play();
+      }
+      if (this.world.keyboard.DOWN && this.isAboveGround()) {
+        this.speedY = -25;
+      }
+      if (this.world.keyboard.DOWN && !this.isAboveGround()) {
+        this.speedY = 0;
       }
       this.world.cameraX = -this.positionX + 30;
     }, 1000 / 100);

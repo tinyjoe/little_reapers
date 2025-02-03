@@ -39,18 +39,19 @@ class World {
   checkThrowObjects() {
     if (this.keyboard.THROW && this.throwableObjects.length < 10) {
       let bottle = new ThrowableObject(
-        this.reaper.positionX + 50,
-        this.reaper.positionY + 30
+        this.reaper.positionX + 80,
+        this.reaper.positionY + 0
       );
       this.throwableObjects.push(bottle);
       this.throwSound.play();
       this.bottleCounter.setCounter(10 - this.throwableObjects.length);
       this.level.enemies.forEach((e) => {
-        if (bottle.isColliding(e) && e instanceof Skeleton) {
-          e.disappear();
+        if (bottle.bottleHit(e) && e instanceof Skeleton) {
+          e.disappear(e);
           console.log("Enemy hit");
-        } else if (bottle.isColliding(e) && e instanceof Endboss) {
+        } else if (bottle.bottleHit(e) && e instanceof Endboss) {
           e.hit();
+          console.log("Endboss hit");
           this.endbossBar.setPercentage(e.energy);
         }
       });
@@ -61,7 +62,14 @@ class World {
 
   checkCollisions() {
     this.level.enemies.forEach((e) => {
-      if (this.reaper.isColliding(e)) {
+      if (
+        this.reaper.isColliding(e) &&
+        this.reaper.isAboveGround() &&
+        e instanceof Skeleton
+      ) {
+        e.disappear(e);
+      }
+      if (this.reaper.isColliding(e) && !e.hasCollided) {
         this.reaper.hit();
         this.statusBar.setPercentage(this.reaper.energy);
       }
@@ -70,10 +78,10 @@ class World {
 
   collectCoins() {
     this.level.coins.forEach((c) => {
-      if (this.reaper.isColliding(c)) {
-        this.count++;
-        c.disappear();
+      if (this.reaper.isColliding(c) && !c.hasCollided) {
+        c.disappear(c);
         this.coinSound.play();
+        this.count++;
       }
       this.coinsCounter.setCounter(this.count);
     });

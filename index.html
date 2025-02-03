@@ -45,32 +45,42 @@
       <h1 id="headline">Little Reapers</h1>
       <div id="fullscreen">
         <canvas id="gameCanvas" width="960" height="540"> </canvas>
-      </div>
-      <div id="gameInfo" class="gameInfoRow">
-        <div class="keyInfoRow">
-          <div class="infoContent">
-            <img
-              class="moveButtonSmall"
-              src="./img/elements/buttons_move_reaper.png"
-            />
-            <p class="infoText">Move Reaper</p>
+        <div id="gameInfo" class="gameInfoRow">
+          <div class="keyInfoRow">
+            <div class="infoContent">
+              <img
+                class="moveButtonSmall"
+                src="./img/elements/buttons_move_reaper.png"
+              />
+              <p class="infoText">Move Reaper</p>
+            </div>
+            <div class="infoContent">
+              <img
+                class="keyButtonSmall"
+                src="./img/elements/button_space.png"
+              />
+              <p class="infoText">Jump</p>
+            </div>
+            <div class="infoContent">
+              <img
+                class="keyButtonSmall"
+                src="./img/elements/button_shift.png"
+              />
+              <p class="infoText">Throw bottles</p>
+            </div>
           </div>
-          <div class="infoContent">
-            <img class="keyButtonSmall" src="./img/elements/button_space.png" />
-            <p class="infoText">Jump</p>
+          <div class="settingsRow">
+            <button
+              id="soundButton"
+              class="soundButton"
+              onclick="muteAllSounds()"
+            ></button>
+            <button
+              id="expandButton"
+              class="expandButton"
+              onclick="enterFullscreen()"
+            ></button>
           </div>
-          <div class="infoContent">
-            <img class="keyButtonSmall" src="./img/elements/button_shift.png" />
-            <p class="infoText">Throw bottles</p>
-          </div>
-        </div>
-        <div class="settingsRow">
-          <button class="soundButton"></button>
-          <button
-            id="expandButton"
-            class="expandButton"
-            onclick="enterFullscreen()"
-          ></button>
         </div>
       </div>
     </div>
