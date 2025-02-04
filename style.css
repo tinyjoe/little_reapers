@@ -44,16 +44,29 @@ h3 {
   text-align: left;
 }
 
-.startscreen {
+.startscreen,
+.gameOverScreen,
+.endScreen {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0;
   width: 100%;
   height: 100vh;
-  background-image: url("img/game_background/start_screen.png");
   background-size: cover;
   background-position: center;
+}
+
+.startscreen {
+  background-image: url("img/game_background/start_screen.png");
+}
+
+.gameOverScreen {
+  background-image: url("img/game_background/gameover_screen.png");
+}
+
+.endScreen {
+  background-image: url("img/game_background/end_screen.png");
 }
 
 .startButton {
@@ -67,8 +80,42 @@ h3 {
   cursor: pointer;
 }
 
+.tryAgainButton {
+  width: 250px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  background-image: url("img/elements/button_try.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  position: relative;
+  top: 70%;
+}
+
+.newGameButton {
+  width: 260px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  background-image: url("img/elements/button_new.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  position: relative;
+  top: 70%;
+}
+
 .startButton:hover {
   background-image: url("img/elements/button_start_hover.png");
+}
+
+.tryAgainButton:hover {
+  background-image: url("img/elements/button_try-hover.png");
+}
+
+.newGameButton:hover {
+  background-image: url("img/elements/button_new-hover.png");
 }
 
 .helpButton {
@@ -192,6 +239,7 @@ h3 {
 }
 
 .soundButton,
+.soundOnButton,
 .expandButton {
   width: 60px;
   height: 60px;
@@ -208,6 +256,14 @@ h3 {
 
 .soundButton:hover {
   background-image: url("img/elements/button_sound-off-hover.png");
+}
+
+.soundOnButton {
+  background-image: url("img/elements/button_sound-on.png");
+}
+
+.soundOnButton:hover {
+  background-image: url("img/elements/button_sound-on-hover.png");
 }
 
 .expandButton {

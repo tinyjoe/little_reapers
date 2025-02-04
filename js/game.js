@@ -5,14 +5,15 @@ let isMuted = false;
 let gameScreen;
 let startScreen;
 
-function init() {
+function init(screenId) {
   canvas = document.getElementById("gameCanvas");
   gameScreen = document.getElementById("gamescreen");
-  startScreen = document.getElementById("startscreen");
+  startScreen = document.getElementById(screenId);
   startScreen.classList.add("hidden");
   gameScreen.classList.remove("hidden");
   initLevel();
   world = new World(canvas, keyboard);
+  backgroundSound.play();
 }
 
 function showHelpDialog() {
@@ -119,6 +120,21 @@ function enterFullscreen() {
 }
 
 function muteAllSounds() {
-  isMuted = !isMuted;
-  console.log("Sound is muted" + isMuted);
+  let soundOffButton = document.getElementById("soundButton");
+  let soundOnButton = document.getElementById("soundOnButton");
+  SOUND_EFFECTS.forEach((s) => {
+    s.muted = true;
+  });
+  soundOffButton.classList.add("hidden");
+  soundOnButton.classList.remove("hidden");
+}
+
+function unmuteAllSounds() {
+  let soundOffButton = document.getElementById("soundButton");
+  let soundOnButton = document.getElementById("soundOnButton");
+  SOUND_EFFECTS.forEach((s) => {
+    s.muted = false;
+  });
+  soundOffButton.classList.remove("hidden");
+  soundOnButton.classList.add("hidden");
 }

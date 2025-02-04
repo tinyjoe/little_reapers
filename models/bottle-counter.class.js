@@ -11,6 +11,11 @@ class BottleCounter extends DrawableObject {
     "./img/counters/counter_bottle/counter_bottle_8.png",
     "./img/counters/counter_bottle/counter_bottle_9.png",
     "./img/counters/counter_bottle/counter_bottle_10.png",
+    "./img/counters/counter_bottle/counter_bottle_11.png",
+    "./img/counters/counter_bottle/counter_bottle_12.png",
+    "./img/counters/counter_bottle/counter_bottle_13.png",
+    "./img/counters/counter_bottle/counter_bottle_14.png",
+    "./img/counters/counter_bottle/counter_bottle_15.png",
   ];
 
   constructor(count) {

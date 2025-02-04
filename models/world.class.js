@@ -8,12 +8,9 @@ class World {
   cameraX = 0;
   statusBar = new ReaperHealth();
   endbossBar = new EndbossHealth();
-  bottleCounter = new BottleCounter(10);
+  bottleCounter = new BottleCounter(15);
   coinsCounter = new CoinsCounter(this.count);
   throwableObjects = [];
-  coinSound = new Audio("audio/coin.wav");
-  throwSound = new Audio("audio/throw.wav");
-  noBottleSound = new Audio("audio/none.mp3");
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -37,26 +34,31 @@ class World {
   }
 
   checkThrowObjects() {
-    if (this.keyboard.THROW && this.throwableObjects.length < 10) {
+    if (this.keyboard.THROW && this.throwableObjects.length < 15) {
       let bottle = new ThrowableObject(
         this.reaper.positionX + 80,
         this.reaper.positionY + 0
       );
       this.throwableObjects.push(bottle);
-      this.throwSound.play();
-      this.bottleCounter.setCounter(10 - this.throwableObjects.length);
+      throwSound.play();
+      this.bottleCounter.setCounter(15 - this.throwableObjects.length);
       this.level.enemies.forEach((e) => {
-        if (bottle.bottleHit(e) && e instanceof Skeleton) {
-          e.disappear(e);
-          console.log("Enemy hit");
-        } else if (bottle.bottleHit(e) && e instanceof Endboss) {
-          e.hit();
-          console.log("Endboss hit");
-          this.endbossBar.setPercentage(e.energy);
+        if (e instanceof Endboss) {
+          if (bottle.bottleHit(e)) {
+            e.endbossHit();
+            console.log("Endboss hit");
+            this.endbossBar.setPercentage(e.energy);
+          }
+        } else {
+          if (bottle.bottleHit(e)) {
+            e.disappear(e);
+            enemyHurt.play();
+            console.log("Enemy hit");
+          }
         }
       });
-    } else if (this.keyboard.THROW && this.throwableObjects.length >= 10) {
-      this.noBottleSound.play();
+    } else if (this.keyboard.THROW && this.throwableObjects.length >= 15) {
+      noBottleSound.play();
     }
   }
 
@@ -68,6 +70,7 @@ class World {
         e instanceof Skeleton
       ) {
         e.disappear(e);
+        enemyHurt.play();
       }
       if (this.reaper.isColliding(e) && !e.hasCollided) {
         this.reaper.hit();
@@ -80,7 +83,7 @@ class World {
     this.level.coins.forEach((c) => {
       if (this.reaper.isColliding(c) && !c.hasCollided) {
         c.disappear(c);
-        this.coinSound.play();
+        coinSound.play();
         this.count++;
       }
       this.coinsCounter.setCounter(this.count);

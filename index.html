@@ -11,6 +11,7 @@
     />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="fonts/fonts.css" />
+    <script src="models/sounds.js"></script>
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
     <script src="models/throwable-object.class.js"></script>
@@ -34,7 +35,7 @@
     <div id="startscreen" class="startscreen">
       <div class="infoRow">
         <button class="helpButton" onclick="showHelpDialog()"></button>
-        <button class="startButton" onclick="init()"></button>
+        <button class="startButton" onclick="init('startscreen')"></button>
       </div>
       <div class="legalRow">
         <a href="impressum.html">Impressum</a>
@@ -76,6 +77,11 @@
               onclick="muteAllSounds()"
             ></button>
             <button
+              id="soundOnButton"
+              class="soundOnButton hidden"
+              onclick="unmuteAllSounds()"
+            ></button>
+            <button
               id="expandButton"
               class="expandButton"
               onclick="enterFullscreen()"
@@ -85,5 +91,11 @@
       </div>
     </div>
     <div id="info-dialog" class="overlay hidden"></div>
+    <div id="gameOverScreen" class="gameOverScreen hidden">
+      <button class="tryAgainButton" onclick="init('gameOverScreen')"></button>
+    </div>
+    <div id="endScreen" class="endScreen hidden">
+      <button class="newGameButton" onclick="init('endScreen')"></button>
+    </div>
   </body>
 </html>
