@@ -11,6 +11,7 @@ class World {
   bottleCounter = new BottleCounter(15);
   coinsCounter = new CoinsCounter(this.count);
   throwableObjects = [];
+  gameInterval;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -26,14 +27,15 @@ class World {
   }
 
   run() {
-    setInterval(() => {
+    this.gameInterval = setInterval(() => {
       this.checkCollisions();
-      this.checkThrowObjects();
+      this.checkBottlesCount();
       this.collectCoins();
-    }, 200);
+      this.checkBottleCollisions();
+    }, 60);
   }
 
-  checkThrowObjects() {
+  checkBottlesCount() {
     if (this.keyboard.THROW && this.throwableObjects.length < 15) {
       let bottle = new ThrowableObject(
         this.reaper.positionX + 80,
@@ -42,33 +44,31 @@ class World {
       this.throwableObjects.push(bottle);
       throwSound.play();
       this.bottleCounter.setCounter(15 - this.throwableObjects.length);
-      this.level.enemies.forEach((e) => {
-        if (e instanceof Endboss) {
-          if (bottle.bottleHit(e)) {
-            e.endbossHit();
-            console.log("Endboss hit");
-            this.endbossBar.setPercentage(e.energy);
-          }
-        } else {
-          if (bottle.bottleHit(e)) {
-            e.disappear(e);
-            enemyHurt.play();
-            console.log("Enemy hit");
-          }
-        }
-      });
     } else if (this.keyboard.THROW && this.throwableObjects.length >= 15) {
       noBottleSound.play();
     }
   }
 
+  checkBottleCollisions() {
+    this.throwableObjects.forEach((bottle) => {
+      this.level.enemies.forEach((e) => {
+        if (e instanceof Skeleton && bottle.isColliding(e)) {
+          e.disappear(e);
+          enemyHurt.play();
+          bottle.disappear(bottle);
+        } else if (e instanceof Endboss && bottle.isColliding(e)) {
+          e.hit();
+          enemyHurt.play();
+          bottle.disappear(bottle);
+          this.endbossBar.setPercentage(e.energy);
+        }
+      });
+    });
+  }
+
   checkCollisions() {
     this.level.enemies.forEach((e) => {
-      if (
-        this.reaper.isColliding(e) &&
-        this.reaper.isAboveGround() &&
-        e instanceof Skeleton
-      ) {
+      if (this.reaper.isCrushing(e) && e instanceof Skeleton) {
         e.disappear(e);
         enemyHurt.play();
       }
@@ -111,6 +111,27 @@ class World {
     requestAnimationFrame(function () {
       self.draw();
     });
+  }
+
+  endGame() {
+    let gameScreen = document.getElementById("gamescreen");
+    let endScreen = document.getElementById("endScreen");
+    let gameOverScreen = document.getElementById("gameOverScreen");
+    if (isGameOver) {
+      console.log("Reaper is dead");
+      clearInterval(world.gameInterval);
+      setTimeout(() => {
+        gameScreen.classList.add("hidden");
+        gameOverScreen.classList.remove("hidden");
+      }, 1000);
+    } else if (isGameWon) {
+      console.log("Endboss is dead");
+      clearInterval(world.gameInterval);
+      setTimeout(() => {
+        gameScreen.classList.add("hidden");
+        endScreen.classList.remove("hidden");
+      }, 1000);
+    }
   }
 
   addObjectsToMap(objects) {

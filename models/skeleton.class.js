@@ -35,7 +35,7 @@ class Skeleton extends MovableObject {
     super().loadImage(
       "./img/skeleton/Walking/0_Skeleton_Warrior_Walking_000.png"
     );
-    this.positionX = 300 + Math.random() * 2500;
+    this.positionX = 300 + Math.random() * 2200;
     this.speed = 0.15 + Math.random() * 0.25;
     this.loadImages(this.IMAGES_WALKING);
     this.animate();

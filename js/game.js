@@ -4,6 +4,8 @@ let keyboard = new Keyboard();
 let isMuted = false;
 let gameScreen;
 let startScreen;
+let isGameOver;
+let isGameWon;
 
 function init(screenId) {
   canvas = document.getElementById("gameCanvas");

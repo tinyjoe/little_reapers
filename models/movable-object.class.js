@@ -81,29 +81,12 @@ class MovableObject extends DrawableObject {
     return (
       this.positionX + this.width - this.offsetX >= mo.positionX + mo.offsetX &&
       this.positionX + this.offsetX <= mo.positionX + mo.width - mo.offsetX &&
-      this.positionY + this.offsetY <= mo.positionY + mo.height
-    );
-  }
-
-  bottleHit(mo) {
-    return (
-      this.positionX + this.width >= mo.positionX + mo.offsetX
-      //this.positionY + this.height >= mo.positionY + mo.offsetY &&
-      //this.positionY <= mo.positionY + mo.height
+      this.positionY + this.height >= mo.positionY + mo.offsetY
     );
   }
 
   hit() {
     this.energy -= 5;
-    if (this.energy < 0) {
-      this.energy = 0;
-    } else {
-      this.lastHit = new Date().getTime();
-    }
-  }
-
-  endbossHit() {
-    this.energy -= 20;
     if (this.energy < 0) {
       this.energy = 0;
     } else {
@@ -117,6 +100,6 @@ class MovableObject extends DrawableObject {
 
   isHurt() {
     let timespan = new Date().getTime() - this.lastHit;
-    return timespan < 1500;
+    return timespan < 250;
   }
 }

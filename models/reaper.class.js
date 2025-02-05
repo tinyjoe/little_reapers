@@ -1,5 +1,4 @@
 class Reaper extends MovableObject {
-  world;
   IMAGES_WALKING = [
     "./img/reaper_man/Walking/0_Reaper_Man_Walking_000.png",
     "./img/reaper_man/Walking/0_Reaper_Man_Walking_001.png",
@@ -130,6 +129,8 @@ class Reaper extends MovableObject {
       if (this.isDead()) {
         this.playAnimationOnce(this.IMAGES_DYING);
         endbossDyingSound.play();
+        //isGameOver = true;
+        //this.world.endGame();
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURTING);
         reaperHurtSound.play();

@@ -1,0 +1,7 @@
+.legalBody {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: scroll;
+  align-items: center;
+}

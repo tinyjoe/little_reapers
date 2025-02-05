@@ -91,27 +91,21 @@ class Endboss extends MovableObject {
   }
 
   animate() {
-    let i = 0;
     setInterval(() => {
-      if (i < 10) {
+      if (world.reaper.positionX > 2000 && !this.hadFirstContact) {
         this.playAnimation(this.IMAGES_SPAWNING);
-      } else {
-        this.playAnimation(this.IMAGES_WALKING);
-        this.moveLeft();
-        walkingSound.play();
-      }
-      i++;
-      if (world.reaper.positionX > 2000 && !hadFirstContact) {
-        i = 0;
-        hadFirstContact = true;
-      }
-      if (this.isHurt()) {
+        this.hadFirstContact = true;
+      } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURTING);
         enemyHurt.play();
       } else if (this.isDead()) {
         this.playAnimationOnce(this.IMAGES_DYING);
         endbossDyingSound.play();
+        isGameWon = true;
       } else {
+        this.playAnimation(this.IMAGES_WALKING);
+        this.moveLeft();
+        walkingSound.play();
       }
     }, 50);
   }

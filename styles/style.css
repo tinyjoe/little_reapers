@@ -5,7 +5,7 @@ body {
   margin: 0;
   height: 100vh;
   background-color: #1c2836;
-  background-image: url("img/game_background/3_screen_background.png");
+  background-image: url("../img/game_background/3_screen_background.png");
   background-size: cover;
   background-position: center;
   font-family: "poppinsregular";
@@ -58,15 +58,15 @@ h3 {
 }
 
 .startscreen {
-  background-image: url("img/game_background/start_screen.png");
+  background-image: url("../img/game_background/start_screen.png");
 }
 
 .gameOverScreen {
-  background-image: url("img/game_background/gameover_screen.png");
+  background-image: url("../img/game_background/gameover_screen.png");
 }
 
 .endScreen {
-  background-image: url("img/game_background/end_screen.png");
+  background-image: url("../img/game_background/end_screen.png");
 }
 
 .startButton {
@@ -74,7 +74,7 @@ h3 {
   height: 100px;
   background-color: rgba(255, 255, 255, 0);
   border: none;
-  background-image: url("img/elements/button_start.png");
+  background-image: url("../img/elements/button_start.png");
   background-size: cover;
   background-position: center;
   cursor: pointer;
@@ -85,7 +85,7 @@ h3 {
   height: 100px;
   background-color: rgba(255, 255, 255, 0);
   border: none;
-  background-image: url("img/elements/button_try.png");
+  background-image: url("../img/elements/button_try.png");
   background-size: cover;
   background-position: center;
   cursor: pointer;
@@ -98,7 +98,7 @@ h3 {
   height: 100px;
   background-color: rgba(255, 255, 255, 0);
   border: none;
-  background-image: url("img/elements/button_new.png");
+  background-image: url("../img/elements/button_new.png");
   background-size: cover;
   background-position: center;
   cursor: pointer;
@@ -107,15 +107,15 @@ h3 {
 }
 
 .startButton:hover {
-  background-image: url("img/elements/button_start_hover.png");
+  background-image: url("../img/elements/button_start_hover.png");
 }
 
 .tryAgainButton:hover {
-  background-image: url("img/elements/button_try-hover.png");
+  background-image: url("../img/elements/button_try-hover.png");
 }
 
 .newGameButton:hover {
-  background-image: url("img/elements/button_new-hover.png");
+  background-image: url("../img/elements/button_new-hover.png");
 }
 
 .helpButton {
@@ -123,14 +123,14 @@ h3 {
   height: 100px;
   background-color: rgba(255, 255, 255, 0);
   border: none;
-  background-image: url("img/elements/button_help.png");
+  background-image: url("../img/elements/button_help.png");
   background-size: cover;
   background-position: center;
   cursor: pointer;
 }
 
 .helpButton:hover {
-  background-image: url("img/elements/button_help_hover.png");
+  background-image: url("../img/elements/button_help_hover.png");
 }
 
 .gamescreen {
@@ -220,14 +220,14 @@ h3 {
   height: 60px;
   background-color: rgba(255, 255, 255, 0);
   border: none;
-  background-image: url("img/elements/button_close.png");
+  background-image: url("../img/elements/button_close.png");
   background-size: cover;
   background-position: center;
   cursor: pointer;
 }
 
 .closeButton:hover {
-  background-image: url("img/elements/button_close-hover.png");
+  background-image: url("../img/elements/button_close-hover.png");
 }
 
 .gameInfoRow {
@@ -251,27 +251,27 @@ h3 {
 }
 
 .soundButton {
-  background-image: url("img/elements/button_sound-off.png");
+  background-image: url("../img/elements/button_sound-off.png");
 }
 
 .soundButton:hover {
-  background-image: url("img/elements/button_sound-off-hover.png");
+  background-image: url("../img/elements/button_sound-off-hover.png");
 }
 
 .soundOnButton {
-  background-image: url("img/elements/button_sound-on.png");
+  background-image: url("../img/elements/button_sound-on.png");
 }
 
 .soundOnButton:hover {
-  background-image: url("img/elements/button_sound-on-hover.png");
+  background-image: url("../img/elements/button_sound-on-hover.png");
 }
 
 .expandButton {
-  background-image: url("img/elements/button_expand.png");
+  background-image: url("../img/elements/button_expand.png");
 }
 
 .expandButton:hover {
-  background-image: url("img/elements/button_expand-hover.png");
+  background-image: url("../img/elements/button_expand-hover.png");
 }
 
 .keyInfoRow {
