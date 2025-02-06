@@ -12,15 +12,26 @@ body {
   color: white;
 }
 
-canvas {
-  background-color: black;
-  display: block;
-  border: 1px solid chartreuse;
-}
-
 h1 {
   font-family: "creepsterregular";
   font-size: 56pt;
+  color: chartreuse;
+}
+
+h2 {
+  font-family: "creepsterregular";
+  color: chartreuse;
+  font-size: 40pt;
+  margin: 0px;
+  font-weight: 800;
+  text-align: left;
+}
+
+h3 {
+  font-family: "poppinsbold";
+  font-size: 20pt;
+  margin-top: 50px;
+  margin-bottom: 0px;
   color: chartreuse;
 }
 
@@ -35,184 +46,8 @@ a:hover {
   color: green;
 }
 
-h3 {
-  font-family: "creepsterregular";
-  color: chartreuse;
-  font-size: 40pt;
-  margin: 0px;
-  font-weight: 800;
-  text-align: left;
-}
-
-.startscreen,
-.gameOverScreen,
-.endScreen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  width: 100%;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-}
-
-.startscreen {
-  background-image: url("../img/game_background/start_screen.png");
-}
-
-.gameOverScreen {
-  background-image: url("../img/game_background/gameover_screen.png");
-}
-
-.endScreen {
-  background-image: url("../img/game_background/end_screen.png");
-}
-
-.startButton {
-  width: 300px;
-  height: 100px;
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
-  background-image: url("../img/elements/button_start.png");
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-}
-
-.tryAgainButton {
-  width: 250px;
-  height: 100px;
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
-  background-image: url("../img/elements/button_try.png");
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  position: relative;
-  top: 70%;
-}
-
-.newGameButton {
-  width: 260px;
-  height: 100px;
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
-  background-image: url("../img/elements/button_new.png");
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  position: relative;
-  top: 70%;
-}
-
-.startButton:hover {
-  background-image: url("../img/elements/button_start_hover.png");
-}
-
-.tryAgainButton:hover {
-  background-image: url("../img/elements/button_try-hover.png");
-}
-
-.newGameButton:hover {
-  background-image: url("../img/elements/button_new-hover.png");
-}
-
-.helpButton {
-  width: 150px;
-  height: 100px;
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
-  background-image: url("../img/elements/button_help.png");
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-}
-
-.helpButton:hover {
-  background-image: url("../img/elements/button_help_hover.png");
-}
-
-.gamescreen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .hidden {
   display: none !important;
-}
-
-.infoRow {
-  display: flex;
-  width: 50%;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  top: 70%;
-}
-
-.legalRow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 50px;
-  position: absolute;
-  bottom: 30px;
-}
-
-.overlay {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  background-color: #131c23bc;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0px;
-}
-
-.overlayContent {
-  display: flex;
-  gap: 10px;
-  align-items: top;
-}
-
-.infoDialog {
-  z-index: 40;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  width: 650px;
-  height: 400px;
-  gap: 60px;
-  border: 1px solid chartreuse;
-  border-radius: 20px;
-  background-color: #1c2836;
-}
-
-.keyButton {
-  width: 60px;
-  height: 60px;
-}
-
-.moveButton {
-  width: 180px;
-}
-
-.keyButtonSmall {
-  width: 30px;
-  height: 30px;
-}
-
-.moveButtonSmall {
-  width: 90px;
 }
 
 .closeButton {
@@ -228,100 +63,4 @@ h3 {
 
 .closeButton:hover {
   background-image: url("../img/elements/button_close-hover.png");
-}
-
-.gameInfoRow {
-  display: flex;
-  width: 960px;
-  align-items: top;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.soundButton,
-.soundOnButton,
-.expandButton {
-  width: 60px;
-  height: 60px;
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-}
-
-.soundButton {
-  background-image: url("../img/elements/button_sound-off.png");
-}
-
-.soundButton:hover {
-  background-image: url("../img/elements/button_sound-off-hover.png");
-}
-
-.soundOnButton {
-  background-image: url("../img/elements/button_sound-on.png");
-}
-
-.soundOnButton:hover {
-  background-image: url("../img/elements/button_sound-on-hover.png");
-}
-
-.expandButton {
-  background-image: url("../img/elements/button_expand.png");
-}
-
-.expandButton:hover {
-  background-image: url("../img/elements/button_expand-hover.png");
-}
-
-.keyInfoRow {
-  display: flex;
-  gap: 80px;
-  align-items: baseline;
-  justify-content: center;
-}
-
-.settingsRow {
-  display: flex;
-  gap: 30px;
-  align-items: baseline;
-  justify-content: center;
-}
-
-.infoContent {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-}
-
-.infoText {
-  color: whitesmoke;
-  font-size: 20px;
-  margin: 0px;
-}
-
-@media only screen and (max-width: 960px) {
-  canvas {
-    width: 100%;
-  }
-
-  .infoRow {
-    display: flex;
-    width: 80%;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    top: 70%;
-  }
-}
-
-@media only screen and (max-height: 540px) {
-  h1 {
-    display: none;
-  }
-  canvas {
-    height: 100vh;
-  }
 }

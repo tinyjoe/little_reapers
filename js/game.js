@@ -33,7 +33,7 @@ function closeHelpDialog() {
 function renderHelpDialog() {
   return `<div class="overlayContent">
         <div class="infoDialog">
-          <h3>How to play</h3>
+          <h2>How to play</h2>
           <div class="keyInfoRow">
             <div class="infoContent">
               <img
