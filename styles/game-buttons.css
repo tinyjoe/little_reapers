@@ -1,0 +1,166 @@
+.startButton {
+  width: 300px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  background-image: url("../img/elements/button_start.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.tryAgainButton {
+  width: 250px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  background-image: url("../img/elements/button_try.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  position: relative;
+  top: 70%;
+}
+
+.newGameButton {
+  width: 260px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  background-image: url("../img/elements/button_new.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  position: relative;
+  top: 70%;
+}
+
+.startButton:hover {
+  background-image: url("../img/elements/button_start_hover.png");
+}
+
+.tryAgainButton:hover {
+  background-image: url("../img/elements/button_try-hover.png");
+}
+
+.newGameButton:hover {
+  background-image: url("../img/elements/button_new-hover.png");
+}
+
+.helpButton {
+  width: 150px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  background-image: url("../img/elements/button_help.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.helpButton:hover {
+  background-image: url("../img/elements/button_help_hover.png");
+}
+
+.keyButton {
+  width: 60px;
+  height: 60px;
+}
+
+.moveButton {
+  width: 180px;
+}
+
+.keyButtonSmall {
+  width: 30px;
+  height: 30px;
+}
+
+.moveButtonSmall {
+  width: 90px;
+}
+
+.soundButton,
+.soundOnButton,
+.expandButton {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.soundButton {
+  background-image: url("../img/elements/button_sound-off.png");
+}
+
+.soundButton:hover {
+  background-image: url("../img/elements/button_sound-off-hover.png");
+}
+
+.soundOnButton {
+  background-image: url("../img/elements/button_sound-on.png");
+}
+
+.soundOnButton:hover {
+  background-image: url("../img/elements/button_sound-on-hover.png");
+}
+
+.expandButton {
+  background-image: url("../img/elements/button_expand.png");
+}
+
+.expandButton:hover {
+  background-image: url("../img/elements/button_expand-hover.png");
+}
+
+.mobileButtonRow {
+  display: none;
+}
+
+@media only screen and (max-width: 960px) {
+  .startButton {
+    width: 150px;
+    height: 50px;
+  }
+
+  .helpButton {
+    width: 75px;
+    height: 50px;
+  }
+
+  .tryAgainButton {
+    width: 125px;
+    height: 50px;
+    top: 60%;
+  }
+
+  .newGameButton {
+    width: 130px;
+    height: 50px;
+    top: 60%;
+  }
+
+  .mobileButtonRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+  }
+
+  .mobileButtonSection {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .mobileButton {
+    width: 50px;
+    height: 50px;
+  }
+}

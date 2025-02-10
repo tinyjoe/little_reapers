@@ -11,8 +11,10 @@
     />
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/game-style.css" />
+    <link rel="stylesheet" href="styles/game-buttons.css" />
     <link rel="stylesheet" href="fonts/fonts.css" />
     <script src="models/sounds.js"></script>
+    <script src="models/gameInterval.js"></script>
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
     <script src="models/throwable-object.class.js"></script>
@@ -47,6 +49,47 @@
       <h1 id="headline">Little Reapers</h1>
       <div id="fullscreen">
         <canvas id="gameCanvas" width="960" height="540"> </canvas>
+        <div class="mobileButtonRow">
+          <div class="mobileButtonSection">
+            <img
+              id="mobileMoveLeft"
+              class="mobileButton"
+              src="./img/elements/button_arrow-left.png"
+            />
+            <img
+              id="mobileMoveRight"
+              class="mobileButton"
+              src="./img/elements/button_arrow-right.png"
+            />
+          </div>
+          <div class="mobileButtonSection">
+            <img
+              id="mobileSoundOff"
+              class="mobileButton"
+              onclick="muteAllSounds('mobileSoundOff', 'mobileSoundOn')"
+              src="./img/elements/button_sound-off.png"
+            />
+            <img
+              id="mobileSoundOn"
+              class="mobileButton hidden"
+              onclick="unmuteAllSounds('mobileSoundOn', 'mobileSoundOff')"
+              src="./img/elements/button_sound-on.png"
+            />
+          </div>
+          <div class="mobileButtonSection">
+            <img
+              id="mobileThrow"
+              class="mobileButton"
+              src="./img/elements/button_throw.png"
+            />
+            <img
+              id="mobileJump"
+              class="mobileButton"
+              src="./img/elements/button_arrow-up.png"
+            />
+          </div>
+          <div></div>
+        </div>
         <div id="gameInfo" class="gameInfoRow">
           <div class="keyInfoRow">
             <div class="infoContent">
@@ -75,12 +118,12 @@
             <button
               id="soundButton"
               class="soundButton"
-              onclick="muteAllSounds()"
+              onclick="muteAllSounds('soundButton', 'soundOnButton')"
             ></button>
             <button
               id="soundOnButton"
               class="soundOnButton hidden"
-              onclick="unmuteAllSounds()"
+              onclick="unmuteAllSounds('soundOnButton', 'soundButton')"
             ></button>
             <button
               id="expandButton"

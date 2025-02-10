@@ -121,9 +121,9 @@ function enterFullscreen() {
   requestFullscreen(canvas);
 }
 
-function muteAllSounds() {
-  let soundOffButton = document.getElementById("soundButton");
-  let soundOnButton = document.getElementById("soundOnButton");
+function muteAllSounds(soundOffId, soundOnId) {
+  let soundOffButton = document.getElementById(soundOffId);
+  let soundOnButton = document.getElementById(soundOnId);
   SOUND_EFFECTS.forEach((s) => {
     s.muted = true;
   });
@@ -131,12 +131,16 @@ function muteAllSounds() {
   soundOnButton.classList.remove("hidden");
 }
 
-function unmuteAllSounds() {
-  let soundOffButton = document.getElementById("soundButton");
-  let soundOnButton = document.getElementById("soundOnButton");
+function unmuteAllSounds(soundOnId, soundOffId) {
+  let soundOffButton = document.getElementById(soundOffId);
+  let soundOnButton = document.getElementById(soundOnId);
   SOUND_EFFECTS.forEach((s) => {
     s.muted = false;
   });
   soundOffButton.classList.remove("hidden");
   soundOnButton.classList.add("hidden");
+}
+
+function mobileMoveRight() {
+  world.reaper.moveRight();
 }

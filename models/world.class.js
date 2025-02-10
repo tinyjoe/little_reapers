@@ -20,6 +20,7 @@ class World {
     this.draw();
     this.setWorld();
     this.run();
+    allGameInterval.push(this.gameInterval);
   }
 
   setWorld() {
@@ -118,20 +119,27 @@ class World {
     let endScreen = document.getElementById("endScreen");
     let gameOverScreen = document.getElementById("gameOverScreen");
     if (isGameOver) {
-      console.log("Reaper is dead");
-      clearInterval(world.gameInterval);
-      setTimeout(() => {
-        gameScreen.classList.add("hidden");
-        gameOverScreen.classList.remove("hidden");
-      }, 1000);
+      this.showEndScreen(gameScreen, gameOverScreen);
     } else if (isGameWon) {
-      console.log("Endboss is dead");
-      clearInterval(world.gameInterval);
-      setTimeout(() => {
-        gameScreen.classList.add("hidden");
-        endScreen.classList.remove("hidden");
-      }, 1000);
+      this.showEndScreen(gameScreen, endScreen);
     }
+  }
+
+  showEndScreen(gameScreen, endScreen) {
+    allGameInterval.forEach((i) => {
+      clearInterval(i);
+    });
+    setTimeout(() => {
+      gameScreen.classList.add("hidden");
+      endScreen.classList.remove("hidden");
+    }, 1000);
+  }
+
+  mobileMoveLeft() {
+    let buttonLeft = document.getElementById("mobileMoveLeft");
+    buttonLeft.addEventListener("click", () => {
+      console.log("Left");
+    });
   }
 
   addObjectsToMap(objects) {

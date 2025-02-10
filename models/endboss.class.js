@@ -92,7 +92,7 @@ class Endboss extends MovableObject {
 
   animate() {
     setInterval(() => {
-      if (world.reaper.positionX > 2000 && !this.hadFirstContact) {
+      if (world.reaper.positionX > 2500 && !this.hadFirstContact) {
         this.playAnimation(this.IMAGES_SPAWNING);
         this.hadFirstContact = true;
       } else if (this.isHurt()) {
