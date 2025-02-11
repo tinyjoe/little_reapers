@@ -8,6 +8,8 @@ class MovableObject extends DrawableObject {
   offsetX = 0;
   lastHit = 0;
   hasCollided = false;
+  gravityInterval;
+  disappearInterval;
 
   moveRight() {
     this.positionX += this.speed;
@@ -34,7 +36,7 @@ class MovableObject extends DrawableObject {
   }
 
   applyGravity() {
-    setInterval(() => {
+    this.gravityInterval = setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
         this.positionY -= this.speedY;
         this.speedY -= this.acceleration;
@@ -45,15 +47,17 @@ class MovableObject extends DrawableObject {
         }
       }
     }, 1000 / 20);
+    allGameInterval.push(this.gravityInterval);
   }
 
   disappear(mo) {
-    setInterval(() => {
+    this.disappearInterval = setInterval(() => {
       this.positionX = mo.positionX;
       this.positionY += this.speedY;
       this.speedY += this.acceleration * 3;
       mo.hasCollided = true;
     }, 1000 / 20);
+    allGameInterval.push(this.disappearInterval);
   }
 
   isAboveGround() {

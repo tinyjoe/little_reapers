@@ -19,7 +19,6 @@ class Endboss extends MovableObject {
     "./img/endboss/Walking/Minotaur_03_Walking_016.png",
     "./img/endboss/Walking/Minotaur_03_Walking_017.png",
   ];
-
   IMAGES_SPAWNING = [
     "./img/endboss/Taunt/Minotaur_03_Taunt_000.png",
     "./img/endboss/Taunt/Minotaur_03_Taunt_001.png",
@@ -40,7 +39,6 @@ class Endboss extends MovableObject {
     "./img/endboss/Taunt/Minotaur_03_Taunt_016.png",
     "./img/endboss/Taunt/Minotaur_03_Taunt_017.png",
   ];
-
   IMAGES_HURTING = [
     "./img/endboss/Hurt/Minotaur_03_Hurt_000.png",
     "./img/endboss/Hurt/Minotaur_03_Hurt_001.png",
@@ -55,7 +53,6 @@ class Endboss extends MovableObject {
     "./img/endboss/Hurt/Minotaur_03_Hurt_010.png",
     "./img/endboss/Hurt/Minotaur_03_Hurt_011.png",
   ];
-
   IMAGES_DYING = [
     "./img/endboss/Dying/Minotaur_03_Dying_000.png",
     "./img/endboss/Dying/Minotaur_03_Dying_001.png",
@@ -79,6 +76,7 @@ class Endboss extends MovableObject {
   positionY = 220;
   positionX = 2600;
   hadFirstContact = false;
+  endbossInterval;
 
   constructor() {
     super().loadImage("./img/endboss/Idle/Minotaur_03_Idle_000.png");
@@ -88,25 +86,43 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_HURTING);
     this.loadImages(this.IMAGES_DYING);
     this.animate();
+    allGameInterval.push(this.endbossInterval);
   }
 
   animate() {
-    setInterval(() => {
-      if (world.reaper.positionX > 2500 && !this.hadFirstContact) {
-        this.playAnimation(this.IMAGES_SPAWNING);
-        this.hadFirstContact = true;
-      } else if (this.isHurt()) {
-        this.playAnimation(this.IMAGES_HURTING);
-        enemyHurt.play();
-      } else if (this.isDead()) {
-        this.playAnimationOnce(this.IMAGES_DYING);
-        endbossDyingSound.play();
-        isGameWon = true;
-      } else {
-        this.playAnimation(this.IMAGES_WALKING);
-        this.moveLeft();
-        walkingSound.play();
-      }
+    this.endbossInterval = setInterval(() => {
+      if (this.isEndbossSpawning()) this.spawningAnimation();
+      else if (this.isHurt()) this.hurtingAnimation();
+      else if (this.isDead()) this.dyingAnimation();
+      else this.walkingAnimation();
     }, 50);
+  }
+
+  isEndbossSpawning() {
+    return world.reaper.positionX > 2500 && !this.hadFirstContact;
+  }
+
+  spawningAnimation() {
+    this.playAnimation(this.IMAGES_SPAWNING);
+    this.hadFirstContact = true;
+  }
+
+  hurtingAnimation() {
+    this.playAnimation(this.IMAGES_HURTING);
+    enemyHurt.play();
+  }
+
+  dyingAnimation() {
+    this.playAnimationOnce(this.IMAGES_DYING);
+    this.disappear(this);
+    endbossDyingSound.play();
+    isGameWon = true;
+    world.endGame();
+  }
+
+  walkingAnimation() {
+    this.playAnimation(this.IMAGES_WALKING);
+    this.moveLeft();
+    walkingSound.play();
   }
 }

@@ -91,28 +91,39 @@ class Reaper extends MovableObject {
   animate() {
     this.reaperInterval = setInterval(() => {
       walkingSound.pause();
-      if (this.isReaperMovingRight()) {
-        this.reaperWalking(this.moveRight());
-      }
-      if (this.isReaperMovingLeft()) {
-        this.reaperWalking(this.moveLeft());
-      }
-      if (this.isReaperJumpingRight()) {
-        this.reaperJumping();
-      }
-      if (this.isReaperJumpingLeft()) {
-        this.reaperJumping();
-      }
-      if (this.world.keyboard.DOWN && this.isAboveGround()) {
-        this.speedY = -25;
-      }
-      if (this.world.keyboard.DOWN && !this.isAboveGround()) {
-        this.speedY = 0;
-      }
+      this.reaperWalkingAnimation();
+      this.reaperJumpingAnimation();
+      this.reaperDownAnimation();
       this.world.cameraX = -this.positionX + 30;
     }, 1000 / 100);
-
     this.reaperEffectsInterval = this.reaperAnimation();
+  }
+
+  reaperDownAnimation() {
+    if (this.world.keyboard.DOWN && this.isAboveGround()) {
+      this.speedY = -25;
+    }
+    if (this.world.keyboard.DOWN && !this.isAboveGround()) {
+      this.speedY = 0;
+    }
+  }
+
+  reaperWalkingAnimation() {
+    if (this.isReaperMovingRight()) {
+      this.reaperWalking(this.moveRight());
+    }
+    if (this.isReaperMovingLeft()) {
+      this.reaperWalking(this.moveLeft());
+    }
+  }
+
+  reaperJumpingAnimation() {
+    if (this.isReaperJumpingRight()) {
+      this.reaperJumping();
+    }
+    if (this.isReaperJumpingLeft()) {
+      this.reaperJumping();
+    }
   }
 
   isReaperMovingRight() {
@@ -146,6 +157,14 @@ class Reaper extends MovableObject {
     );
   }
 
+  isReaperMoving() {
+    return (
+      this.world.keyboard.RIGHT ||
+      this.world.keyboard.LEFT ||
+      this.world.mobileMoveLeft()
+    );
+  }
+
   reaperWalking(direction) {
     direction;
     walkingSound.play();
@@ -168,23 +187,12 @@ class Reaper extends MovableObject {
     reaperHurtSound.play();
   }
 
-  isReaperMoving() {
-    return (
-      this.world.keyboard.RIGHT ||
-      this.world.keyboard.LEFT ||
-      this.world.mobileMoveLeft()
-    );
-  }
-
   reaperAnimation() {
     setInterval(() => {
-      if (this.isDead()) {
-        this.reaperDying();
-      } else if (this.isHurt()) {
-        this.reaperHurting();
-      } else if (this.isAboveGround()) {
-        this.playAnimation(this.IMAGES_JUMPING);
-      } else {
+      if (this.isDead()) this.reaperDying();
+      else if (this.isHurt()) this.reaperHurting();
+      else if (this.isAboveGround()) this.playAnimation(this.IMAGES_JUMPING);
+      else {
         if (this.isReaperMoving()) {
           this.playAnimation(this.IMAGES_WALKING);
         }

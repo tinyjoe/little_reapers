@@ -53,18 +53,25 @@ class World {
   checkBottleCollisions() {
     this.throwableObjects.forEach((bottle) => {
       this.level.enemies.forEach((e) => {
-        if (e instanceof Skeleton && bottle.isColliding(e)) {
-          e.disappear(e);
-          enemyHurt.play();
-          bottle.disappear(bottle);
-        } else if (e instanceof Endboss && bottle.isColliding(e)) {
-          e.hit();
-          enemyHurt.play();
-          bottle.disappear(bottle);
-          this.endbossBar.setPercentage(e.energy);
-        }
+        if (e instanceof Skeleton && bottle.isColliding(e))
+          this.enemyCollision(e, bottle);
+        else if (e instanceof Endboss && bottle.isColliding(e))
+          this.endbossCollision(e, bottle);
       });
     });
+  }
+
+  endbossCollision(e, bottle) {
+    e.hit();
+    enemyHurt.play();
+    bottle.disappear(bottle);
+    this.endbossBar.setPercentage(e.energy);
+  }
+
+  enemyCollision(e, bottle) {
+    e.disappear(e);
+    enemyHurt.play();
+    bottle.disappear(bottle);
   }
 
   checkCollisions() {
@@ -94,24 +101,40 @@ class World {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.cameraX, 0);
-    this.addObjectsToMap(this.level.backgroundObjects);
-    this.addObjectsToMap(this.level.ghosts);
-    this.addObjectsToMap(this.level.foregroundObjects);
+    this.drawLevel();
     this.ctx.translate(-this.cameraX, 0);
-    this.addToMap(this.statusBar);
-    this.addToMap(this.endbossBar);
-    this.addToMap(this.bottleCounter);
-    this.addToMap(this.coinsCounter);
+    this.drawStats();
     this.ctx.translate(this.cameraX, 0);
-    this.addObjectsToMap(this.level.enemies);
-    this.addObjectsToMap(this.level.coins);
-    this.addToMap(this.reaper);
-    this.addObjectsToMap(this.throwableObjects);
+    this.drawCharacters();
     this.ctx.translate(-this.cameraX, 0);
+    this.drawAnimationFrame();
+  }
+
+  drawAnimationFrame() {
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
     });
+  }
+
+  drawCharacters() {
+    this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.coins);
+    this.addToMap(this.reaper);
+    this.addObjectsToMap(this.throwableObjects);
+  }
+
+  drawStats() {
+    this.addToMap(this.statusBar);
+    this.addToMap(this.endbossBar);
+    this.addToMap(this.bottleCounter);
+    this.addToMap(this.coinsCounter);
+  }
+
+  drawLevel() {
+    this.addObjectsToMap(this.level.backgroundObjects);
+    this.addObjectsToMap(this.level.ghosts);
+    this.addObjectsToMap(this.level.foregroundObjects);
   }
 
   endGame() {
@@ -126,9 +149,8 @@ class World {
   }
 
   showEndScreen(gameScreen, endScreen) {
-    allGameInterval.forEach((i) => {
-      clearInterval(i);
-    });
+    allGameInterval.forEach((i) => clearInterval(i));
+    SOUND_EFFECTS.forEach((s) => s.pause());
     setTimeout(() => {
       gameScreen.classList.add("hidden");
       endScreen.classList.remove("hidden");

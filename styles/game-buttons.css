@@ -120,7 +120,74 @@
   display: none;
 }
 
+@media (max-width: 1050px) {
+  .startButton {
+    width: 225px;
+    height: 75px;
+  }
+
+  .helpButton {
+    width: 100px;
+    height: 75px;
+  }
+
+  .tryAgainButton {
+    width: 167px;
+    height: 75px;
+    top: 60%;
+  }
+
+  .newGameButton {
+    width: 174px;
+    height: 75px;
+    top: 60%;
+  }
+
+  .keyButton {
+    width: 50px;
+    height: 50px;
+  }
+
+  .moveButton {
+    width: 150px;
+  }
+}
+
+@media (max-height: 500px) {
+  .keyButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .moveButton {
+    width: 130px;
+  }
+}
+
 @media only screen and (max-width: 960px) {
+  .mobileButtonRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+  }
+
+  .mobileButtonSection {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .mobileButton {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 600px) {
   .startButton {
     width: 150px;
     height: 50px;
@@ -143,24 +210,12 @@
     top: 60%;
   }
 
-  .mobileButtonRow {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+  .keyButton {
+    width: 40px;
+    height: 40px;
   }
 
-  .mobileButtonSection {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .mobileButton {
-    width: 50px;
-    height: 50px;
+  .moveButton {
+    width: 130px;
   }
 }

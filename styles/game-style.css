@@ -121,7 +121,7 @@ canvas {
 
 .infoText {
   color: whitesmoke;
-  font-size: 20px;
+  font-size: 15pt;
   margin: 0px;
 }
 
@@ -134,13 +134,18 @@ canvas {
     width: 100%;
   }
 
-  .infoRow {
-    display: flex;
-    width: 80%;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    top: 70%;
+  .infoDialog {
+    width: 650px;
+    height: 400px;
+    gap: 50px;
+  }
+
+  .infoText {
+    font-size: 13pt;
+  }
+
+  .keyInfoRow {
+    gap: 60px;
   }
 
   .mobileButtonRow {
@@ -158,6 +163,80 @@ canvas {
   }
 }
 
+@media (max-width: 780px) {
+  .infoDialog {
+    width: 550px;
+    height: 400px;
+    gap: 40px;
+  }
+
+  .infoRow {
+    width: 70%;
+  }
+
+  .legalRow {
+    gap: 30px;
+    bottom: 20px;
+  }
+
+  .keyInfoRow {
+    gap: 40px;
+  }
+
+  .infoText {
+    font-size: 11pt;
+  }
+}
+
+@media (max-height: 500px) {
+  .infoRow {
+    top: 60%;
+  }
+}
+
+@media (max-width: 650px) {
+  .infoDialog {
+    width: 450px;
+    height: 400px;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 525px) {
+  .infoDialog {
+    z-index: 40;
+    width: 380px;
+    height: 400px;
+    gap: 40px;
+  }
+
+  .infoRow {
+    width: 80%;
+  }
+
+  .legalRow {
+    gap: 20px;
+    bottom: 10px;
+  }
+
+  .keyInfoRow {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 450px) {
+  .infoDialog {
+    z-index: 40;
+    width: 320px;
+    height: 400px;
+    gap: 10px;
+  }
+
+  .keyInfoRow {
+    gap: 20px;
+  }
+}
+
 @media only screen and (max-height: 540px) and (orientation: landscape) {
   h1 {
     display: none;
@@ -169,5 +248,21 @@ canvas {
 
   canvas {
     height: 100vh;
+  }
+}
+
+@media (max-height: 500px) {
+  .infoDialog {
+    z-index: 40;
+    height: 300px;
+    gap: 30px;
+  }
+}
+
+@media (max-height: 380px) {
+  .infoDialog {
+    z-index: 40;
+    height: 250px;
+    gap: 20px;
   }
 }

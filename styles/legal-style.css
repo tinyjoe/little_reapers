@@ -33,3 +33,39 @@ a:hover {
   top: 30px;
   right: 200px;
 }
+
+@media (max-width: 1200px) {
+  .legalBody {
+    padding: 10px 15%;
+  }
+
+  .legalClose {
+    position: absolute;
+    top: 30px;
+    right: 100px;
+  }
+}
+
+@media (max-width: 780px) {
+  .legalBody {
+    padding: 10px 30px;
+  }
+
+  .legalClose {
+    z-index: 100;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  a {
+    font-size: 10pt;
+  }
+}
+
+@media (max-width: 400px) {
+  .legalClose {
+    top: 10px;
+    right: 10px;
+  }
+}
