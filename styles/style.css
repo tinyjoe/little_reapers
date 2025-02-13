@@ -87,6 +87,15 @@ a:hover {
   }
 }
 
+@media screen and (orientation: portrait) {
+  body {
+    transform: rotate(90deg);
+    background-image: url("../img/game_background/3_screen_background-vertical.png") !important;
+    height: 100vw;
+    width: 100vh;
+  }
+}
+
 @media (max-width: 780px) {
   h1 {
     font-size: 40pt;

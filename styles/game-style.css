@@ -36,6 +36,12 @@ canvas {
   justify-content: center;
 }
 
+.fullscreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .infoRow {
   display: flex;
   width: 50%;
@@ -125,13 +131,48 @@ canvas {
   margin: 0px;
 }
 
+@media screen and (orientation: portrait) {
+  .startscreen,
+  .gameOverScreen,
+  .endScreen,
+  .gamescreen {
+    width: 100vh;
+    height: 100vw;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+  }
+
+  canvas {
+    height: 98vw;
+  }
+
+  .overlay {
+    height: 100vw;
+    width: 100vh;
+  }
+
+  .infoDialog {
+    width: 60vh !important;
+    height: 70vw !important;
+    gap: 40px !important;
+  }
+}
+
 @media only screen and (max-width: 960px) {
   body {
     width: 100%;
   }
 
-  .fullscreen {
+  canvas {
     width: 100%;
+  }
+
+  .headline {
+    display: none;
   }
 
   .infoDialog {
@@ -247,7 +288,7 @@ canvas {
   }
 
   canvas {
-    height: 100vh;
+    height: 99vh;
   }
 }
 

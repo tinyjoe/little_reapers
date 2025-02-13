@@ -73,8 +73,6 @@ class Reaper extends MovableObject {
   speed = 0.75;
   offsetY = 90;
   offsetX = 90;
-  reaperInterval;
-  reaperEffectsInterval;
 
   constructor() {
     super().loadImage("./img/reaper_man/Idle/0_Reaper_Man_Idle_000.png");
@@ -84,12 +82,10 @@ class Reaper extends MovableObject {
     this.loadImages(this.IMAGES_HURTING);
     this.applyGravity();
     this.animate();
-    allGameInterval.push(this.reaperInterval);
-    allGameInterval.push(this.reaperEffectsInterval);
   }
 
   animate() {
-    this.reaperInterval = setInterval(() => {
+    setStoppableInterval(() => {
       walkingSound.pause();
       this.reaperWalkingAnimation();
       this.reaperJumpingAnimation();
@@ -111,8 +107,7 @@ class Reaper extends MovableObject {
   reaperWalkingAnimation() {
     if (this.isReaperMovingRight()) {
       this.reaperWalking(this.moveRight());
-    }
-    if (this.isReaperMovingLeft()) {
+    } else if (this.isReaperMovingLeft()) {
       this.reaperWalking(this.moveLeft());
     }
   }
@@ -133,10 +128,7 @@ class Reaper extends MovableObject {
   }
 
   isReaperMovingLeft() {
-    return (
-      (this.world.keyboard.LEFT && this.positionX > 0) ||
-      (this.world.mobileMoveLeft() && this.positionX > 0)
-    );
+    return this.world.keyboard.LEFT && this.positionX > 0;
   }
 
   isReaperJumpingLeft() {
@@ -158,11 +150,7 @@ class Reaper extends MovableObject {
   }
 
   isReaperMoving() {
-    return (
-      this.world.keyboard.RIGHT ||
-      this.world.keyboard.LEFT ||
-      this.world.mobileMoveLeft()
-    );
+    return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
   }
 
   reaperWalking(direction) {
@@ -188,7 +176,7 @@ class Reaper extends MovableObject {
   }
 
   reaperAnimation() {
-    setInterval(() => {
+    setStoppableInterval(() => {
       if (this.isDead()) this.reaperDying();
       else if (this.isHurt()) this.reaperHurting();
       else if (this.isAboveGround()) this.playAnimation(this.IMAGES_JUMPING);

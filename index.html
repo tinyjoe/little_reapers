@@ -46,36 +46,22 @@
       </div>
     </div>
     <div id="gamescreen" class="gamescreen hidden">
-      <h1 id="headline">Little Reapers</h1>
+      <h1 id="headline" class="headline">Little Reapers</h1>
       <div id="fullscreen">
         <canvas id="gameCanvas" width="960" height="540"> </canvas>
+        <img
+          id="mobileSoundOff"
+          class="mobileButton mobileSoundButton"
+          onclick="muteAllSounds('mobileSoundOff', 'mobileSoundOn')"
+          src="./img/elements/button_sound-off.png"
+        />
+        <img
+          id="mobileSoundOn"
+          class="mobileButton hidden mobileSoundButton"
+          onclick="unmuteAllSounds('mobileSoundOn', 'mobileSoundOff')"
+          src="./img/elements/button_sound-on.png"
+        />
         <div class="mobileButtonRow">
-          <div class="mobileButtonSection">
-            <img
-              id="mobileMoveLeft"
-              class="mobileButton"
-              src="./img/elements/button_arrow-left.png"
-            />
-            <img
-              id="mobileMoveRight"
-              class="mobileButton"
-              src="./img/elements/button_arrow-right.png"
-            />
-          </div>
-          <div class="mobileButtonSection">
-            <img
-              id="mobileSoundOff"
-              class="mobileButton"
-              onclick="muteAllSounds('mobileSoundOff', 'mobileSoundOn')"
-              src="./img/elements/button_sound-off.png"
-            />
-            <img
-              id="mobileSoundOn"
-              class="mobileButton hidden"
-              onclick="unmuteAllSounds('mobileSoundOn', 'mobileSoundOff')"
-              src="./img/elements/button_sound-on.png"
-            />
-          </div>
           <div class="mobileButtonSection">
             <img
               id="mobileThrow"
@@ -88,7 +74,19 @@
               src="./img/elements/button_arrow-up.png"
             />
           </div>
-          <div></div>
+          <div class="mobileButtonSection">
+            <img
+              id="mobileMoveLeft"
+              class="mobileButton"
+              on
+              src="./img/elements/button_arrow-left.png"
+            />
+            <img
+              id="mobileMoveRight"
+              class="mobileButton"
+              src="./img/elements/button_arrow-right.png"
+            />
+          </div>
         </div>
         <div id="gameInfo" class="gameInfoRow">
           <div class="keyInfoRow">

@@ -30,8 +30,6 @@ class Skeleton extends MovableObject {
   positionY = 370;
   offsetY = 40;
   offsetX = 40;
-  enemyMovingInterval;
-  enemyWalkingInterval;
 
   constructor() {
     super().loadImage(
@@ -41,15 +39,13 @@ class Skeleton extends MovableObject {
     this.speed = 0.15 + Math.random() * 0.25;
     this.loadImages(this.IMAGES_WALKING);
     this.animate();
-    allGameInterval.push(this.enemyMovingInterval);
-    allGameInterval.push(this.enemyWalkingInterval);
   }
 
   animate() {
-    this.enemyMovingInterval = setInterval(() => {
+    setStoppableInterval(() => {
       this.moveLeft();
     }, 10);
-    this.enemyWalkingInterval = setInterval(() => {
+    setStoppableInterval(() => {
       this.playAnimation(this.IMAGES_WALKING);
     }, 60);
   }

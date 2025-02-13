@@ -11,7 +11,6 @@ class World {
   bottleCounter = new BottleCounter(15);
   coinsCounter = new CoinsCounter(this.count);
   throwableObjects = [];
-  gameInterval;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -20,7 +19,6 @@ class World {
     this.draw();
     this.setWorld();
     this.run();
-    allGameInterval.push(this.gameInterval);
   }
 
   setWorld() {
@@ -28,7 +26,7 @@ class World {
   }
 
   run() {
-    this.gameInterval = setInterval(() => {
+    setStoppableInterval(() => {
       this.checkCollisions();
       this.checkBottlesCount();
       this.collectCoins();
@@ -146,6 +144,7 @@ class World {
     } else if (isGameWon) {
       this.showEndScreen(gameScreen, endScreen);
     }
+    clearLevel();
   }
 
   showEndScreen(gameScreen, endScreen) {
@@ -155,13 +154,6 @@ class World {
       gameScreen.classList.add("hidden");
       endScreen.classList.remove("hidden");
     }, 1000);
-  }
-
-  mobileMoveLeft() {
-    let buttonLeft = document.getElementById("mobileMoveLeft");
-    buttonLeft.addEventListener("click", () => {
-      console.log("Left");
-    });
   }
 
   addObjectsToMap(objects) {

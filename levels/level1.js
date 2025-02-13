@@ -15,6 +15,14 @@ function initLevel() {
   );
 }
 
+function clearLevel() {
+  backgroundObjects = [];
+  foregroundObjects = [];
+  enemies = [];
+  backgroundGhosts = [];
+  reaperCoins = [];
+}
+
 function setBackgroundObjects() {
   for (let i = -50; i < 3030; i += 960) {
     backgroundObjects.push(

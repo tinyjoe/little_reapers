@@ -5,7 +5,7 @@
   padding: 10px 25%;
   overflow: scroll;
   align-items: center;
-  -ms-overflow-style: none; /* IE and Edge */
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
 

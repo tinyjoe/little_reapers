@@ -59,51 +59,45 @@ function renderHelpDialog() {
 }
 
 document.addEventListener("keydown", (event) => {
-  if (event.keyCode === 39) {
-    keyboard.RIGHT = true;
-  }
-  if (event.keyCode === 37) {
-    keyboard.LEFT = true;
-  }
-  if (event.keyCode === 38) {
-    keyboard.UP = true;
-  }
-  if (event.keyCode === 40) {
-    keyboard.DOWN = true;
-  }
-  if (event.keyCode === 32) {
-    keyboard.JUMP = true;
-  }
-  if (event.keyCode === 16) {
-    keyboard.THROW = true;
-  }
-  if (event.keyCode === 27) {
-    keyboard.ESC = true;
-  }
+  if (event.keyCode === 39) keyboard.RIGHT = true;
+  if (event.keyCode === 37) keyboard.LEFT = true;
+  if (event.keyCode === 38) keyboard.UP = true;
+  if (event.keyCode === 40) keyboard.DOWN = true;
+  if (event.keyCode === 32) keyboard.JUMP = true;
+  if (event.keyCode === 16) keyboard.THROW = true;
+  if (event.keyCode === 27) keyboard.ESC = true;
 });
 
 document.addEventListener("keyup", (event) => {
-  if (event.keyCode === 39) {
-    keyboard.RIGHT = false;
-  }
-  if (event.keyCode === 37) {
-    keyboard.LEFT = false;
-  }
-  if (event.keyCode === 38) {
-    keyboard.UP = false;
-  }
-  if (event.keyCode === 40) {
-    keyboard.DOWN = false;
-  }
-  if (event.keyCode === 32) {
-    keyboard.JUMP = false;
-  }
-  if (event.keyCode === 16) {
-    keyboard.THROW = false;
-  }
-  if (event.keyCode === 27) {
-    keyboard.ESC = false;
-  }
+  if (event.keyCode === 39) keyboard.RIGHT = false;
+  if (event.keyCode === 37) keyboard.LEFT = false;
+  if (event.keyCode === 38) keyboard.UP = false;
+  if (event.keyCode === 40) keyboard.DOWN = false;
+  if (event.keyCode === 32) keyboard.JUMP = false;
+  if (event.keyCode === 16) keyboard.THROW = false;
+  if (event.keyCode === 27) keyboard.ESC = false;
+});
+
+document.addEventListener("touchstart", (e) => {
+  let MOBILE_RIGHT = document.getElementById("mobileMoveRight");
+  let MOBILE_LEFT = document.getElementById("mobileMoveLeft");
+  let MOBILE_JUMP = document.getElementById("mobileJump");
+  let MOBILE_THROW = document.getElementById("mobileThrow");
+  if (e.target === MOBILE_RIGHT) keyboard.RIGHT = true;
+  if (e.target === MOBILE_LEFT) keyboard.LEFT = true;
+  if (e.target === MOBILE_THROW) keyboard.THROW = true;
+  if (e.target === MOBILE_JUMP) keyboard.JUMP = true;
+});
+
+document.addEventListener("touchend", (e) => {
+  let MOBILE_RIGHT = document.getElementById("mobileMoveRight");
+  let MOBILE_LEFT = document.getElementById("mobileMoveLeft");
+  let MOBILE_JUMP = document.getElementById("mobileJump");
+  let MOBILE_THROW = document.getElementById("mobileThrow");
+  if (e.target === MOBILE_RIGHT) keyboard.RIGHT = false;
+  if (e.target === MOBILE_LEFT) keyboard.LEFT = false;
+  if (e.target === MOBILE_THROW) keyboard.THROW = false;
+  if (e.target === MOBILE_JUMP) keyboard.JUMP = false;
 });
 
 function requestFullscreen(element) {
@@ -139,8 +133,4 @@ function unmuteAllSounds(soundOnId, soundOffId) {
   });
   soundOffButton.classList.remove("hidden");
   soundOnButton.classList.add("hidden");
-}
-
-function mobileMoveRight() {
-  world.reaper.moveRight();
 }
