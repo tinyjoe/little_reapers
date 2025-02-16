@@ -17,6 +17,8 @@ function init(screenId) {
   startScreen = document.getElementById(screenId);
   startScreen.classList.add("hidden");
   gameScreen.classList.remove("hidden");
+  isGameOver = false;
+  isGameWon = false;
   initLevel();
   world = new World(canvas, keyboard);
   backgroundSound.play();
