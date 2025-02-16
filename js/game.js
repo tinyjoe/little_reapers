@@ -7,6 +7,10 @@ let startScreen;
 let isGameOver;
 let isGameWon;
 
+/**
+ * Starts a new game.
+ * @param {string} screenId - The ID of the start screen which should be hidden.
+ */
 function init(screenId) {
   canvas = document.getElementById("gameCanvas");
   gameScreen = document.getElementById("gamescreen");
@@ -18,18 +22,27 @@ function init(screenId) {
   backgroundSound.play();
 }
 
+/**
+ * Opens a dialog with the instructions on how to play the game.
+ */
 function showHelpDialog() {
   let overlay = document.getElementById("info-dialog");
   overlay.classList.remove("hidden");
   overlay.innerHTML += renderHelpDialog();
 }
 
+/**
+ * Closes the dialog with the instructions on how to play the game.
+ */
 function closeHelpDialog() {
   let overlay = document.getElementById("info-dialog");
   overlay.classList.add("hidden");
   overlay.innerHTML = "";
 }
 
+/**
+ * Template function of the help dialog
+ */
 function renderHelpDialog() {
   return `<div class="overlayContent">
         <div class="infoDialog">
@@ -47,7 +60,7 @@ function renderHelpDialog() {
               <p class="infoText">Jump</p>
             </div>
             <div class="infoContent">
-              <img class="keyButton" src="./img/elements/button_shift.png" />
+              <img class="keyButton" src="./img/elements/button_shift_02.png" />
               <p class="infoText">Throw bottles</p>
             </div>
           </div>
@@ -58,6 +71,9 @@ function renderHelpDialog() {
       `;
 }
 
+/**
+ * Event listener when specific keys are pressed.
+ */
 document.addEventListener("keydown", (event) => {
   if (event.keyCode === 39) keyboard.RIGHT = true;
   if (event.keyCode === 37) keyboard.LEFT = true;
@@ -68,6 +84,9 @@ document.addEventListener("keydown", (event) => {
   if (event.keyCode === 27) keyboard.ESC = true;
 });
 
+/**
+ * Event listener when specific keys are released.
+ */
 document.addEventListener("keyup", (event) => {
   if (event.keyCode === 39) keyboard.RIGHT = false;
   if (event.keyCode === 37) keyboard.LEFT = false;
@@ -78,6 +97,9 @@ document.addEventListener("keyup", (event) => {
   if (event.keyCode === 27) keyboard.ESC = false;
 });
 
+/**
+ * Event listener when touch event starts on mobile devices.
+ */
 document.addEventListener("touchstart", (e) => {
   let MOBILE_RIGHT = document.getElementById("mobileMoveRight");
   let MOBILE_LEFT = document.getElementById("mobileMoveLeft");
@@ -89,6 +111,9 @@ document.addEventListener("touchstart", (e) => {
   if (e.target === MOBILE_JUMP) keyboard.JUMP = true;
 });
 
+/**
+ * Event listener when touch event ends on mobile devices.
+ */
 document.addEventListener("touchend", (e) => {
   let MOBILE_RIGHT = document.getElementById("mobileMoveRight");
   let MOBILE_LEFT = document.getElementById("mobileMoveLeft");
@@ -100,6 +125,9 @@ document.addEventListener("touchend", (e) => {
   if (e.target === MOBILE_JUMP) keyboard.JUMP = false;
 });
 
+/**
+ * Request the fullscreen options for different browsers.
+ */
 function requestFullscreen(element) {
   if (element.requestFullscreen) {
     element.requestFullscreen();
@@ -110,11 +138,19 @@ function requestFullscreen(element) {
   }
 }
 
+/**
+ * Enters fullscreen mode for game canvas.
+ */
 function enterFullscreen() {
   canvas = document.getElementById("gameCanvas");
   requestFullscreen(canvas);
 }
 
+/**
+ * Mutes all sound effects of the game.
+ * @param {string} soundOffId - The ID of the button, which is shown when the sound is on.
+ * @param {string} soundOnId - The ID of the button, which is shown when the sound is off.
+ */
 function muteAllSounds(soundOffId, soundOnId) {
   let soundOffButton = document.getElementById(soundOffId);
   let soundOnButton = document.getElementById(soundOnId);
@@ -125,6 +161,11 @@ function muteAllSounds(soundOffId, soundOnId) {
   soundOnButton.classList.remove("hidden");
 }
 
+/**
+ * Unmutes all sound effects of the game.
+ * @param {string} soundOnId - The ID of the button, which is shown when the sound is off.
+ * @param {string} soundOffId - The ID of the button, which is shown when the sound is on.
+ */
 function unmuteAllSounds(soundOnId, soundOffId) {
   let soundOffButton = document.getElementById(soundOffId);
   let soundOnButton = document.getElementById(soundOnId);

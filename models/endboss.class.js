@@ -93,7 +93,7 @@ class Endboss extends MovableObject {
       else if (this.isHurt()) this.hurtingAnimation();
       else if (this.isDead()) this.dyingAnimation();
       else this.walkingAnimation();
-    }, 50);
+    }, 40);
   }
 
   isEndbossSpawning() {

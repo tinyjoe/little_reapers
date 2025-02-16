@@ -26,18 +26,18 @@ class Reaper extends MovableObject {
     "./img/reaper_man/Walking/0_Reaper_Man_Walking_023.png",
   ];
   IMAGES_JUMPING = [
-    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_000.png",
-    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_001.png",
-    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_002.png",
-    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_003.png",
-    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_004.png",
-    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_005.png",
-    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_006.png",
-    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_007.png",
-    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_008.png",
-    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_009.png",
-    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_010.png",
-    "./img/reaper_man/Jump/0_Reaper_Man_Slashing_011.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Kicking_000.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Kicking_001.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Kicking_002.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Kicking_003.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Kicking_004.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Kicking_005.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Kicking_006.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Kicking_007.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Kicking_008.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Kicking_009.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Kicking_010.png",
+    "./img/reaper_man/Jump/0_Reaper_Man_Kicking_011.png",
   ];
   IMAGES_DYING = [
     "./img/reaper_man/Dying/0_Reaper_Man_Dying_000.png",
@@ -74,6 +74,10 @@ class Reaper extends MovableObject {
   offsetY = 90;
   offsetX = 90;
 
+  /**
+   * Represents the main character of the game.
+   * @constructor
+   */
   constructor() {
     super().loadImage("./img/reaper_man/Idle/0_Reaper_Man_Idle_000.png");
     this.loadImages(this.IMAGES_WALKING);
@@ -84,6 +88,9 @@ class Reaper extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Animates the reaper in different situations.
+   */
   animate() {
     setStoppableInterval(() => {
       walkingSound.pause();
@@ -92,9 +99,12 @@ class Reaper extends MovableObject {
       this.reaperDownAnimation();
       this.world.cameraX = -this.positionX + 30;
     }, 1000 / 100);
-    this.reaperEffectsInterval = this.reaperAnimation();
+    this.reaperAnimation();
   }
 
+  /**
+   * Defines animation of reaper when the down key is pressed.
+   */
   reaperDownAnimation() {
     if (this.world.keyboard.DOWN && this.isAboveGround()) {
       this.speedY = -25;
@@ -104,6 +114,9 @@ class Reaper extends MovableObject {
     }
   }
 
+  /**
+   * Defines animation of reaper when the reaper is walking.
+   */
   reaperWalkingAnimation() {
     if (this.isReaperMovingRight()) {
       this.reaperWalking(this.moveRight());
@@ -112,6 +125,9 @@ class Reaper extends MovableObject {
     }
   }
 
+  /**
+   * Defines animation of reaper when the reaper is jumping.
+   */
   reaperJumpingAnimation() {
     if (this.isReaperJumpingRight()) {
       this.reaperJumping();
@@ -121,16 +137,25 @@ class Reaper extends MovableObject {
     }
   }
 
+  /**
+   * Checks if reaper is moving right.
+   */
   isReaperMovingRight() {
     return (
       this.world.keyboard.RIGHT && this.positionX < this.world.level.levelEndX
     );
   }
 
+  /**
+   * Checks if reaper is moving left.
+   */
   isReaperMovingLeft() {
     return this.world.keyboard.LEFT && this.positionX > 0;
   }
 
+  /**
+   * Checks if reaper is jumping left.
+   */
   isReaperJumpingLeft() {
     return (
       (this.world.keyboard.JUMP || this.world.keyboard.UP) &&
@@ -140,6 +165,9 @@ class Reaper extends MovableObject {
     );
   }
 
+  /**
+   * Checks if reaper is jumping right.
+   */
   isReaperJumpingRight() {
     return (
       (this.world.keyboard.JUMP || this.world.keyboard.UP) &&
@@ -149,20 +177,32 @@ class Reaper extends MovableObject {
     );
   }
 
+  /**
+   * Checks whether reaper is moving.
+   */
   isReaperMoving() {
     return this.world.keyboard.RIGHT || this.world.keyboard.LEFT;
   }
 
+  /**
+   * Defines what happens when reaper is walking.
+   */
   reaperWalking(direction) {
     direction;
     walkingSound.play();
   }
 
+  /**
+   * Defines what happens when reaper is jumping.
+   */
   reaperJumping() {
     this.jump();
     jumpingSound.play();
   }
 
+  /**
+   * Defines animation of reaper when he is dying.
+   */
   reaperDying() {
     this.playAnimationOnce(this.IMAGES_DYING);
     endbossDyingSound.play();
@@ -170,11 +210,17 @@ class Reaper extends MovableObject {
     this.world.endGame();
   }
 
+  /**
+   * Defines animation of reaper when he is hurtin.
+   */
   reaperHurting() {
     this.playAnimation(this.IMAGES_HURTING);
     reaperHurtSound.play();
   }
 
+  /**
+   * Defines the animation of the reaper.
+   */
   reaperAnimation() {
     setStoppableInterval(() => {
       if (this.isDead()) this.reaperDying();
@@ -188,6 +234,9 @@ class Reaper extends MovableObject {
     }, 40);
   }
 
+  /**
+   * Makes the character jump.
+   */
   jump() {
     this.speedY = 25;
   }

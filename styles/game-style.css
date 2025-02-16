@@ -131,7 +131,7 @@ canvas {
   margin: 0px;
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (orientation: portrait) and (pointer: coarse) {
   .startscreen,
   .gameOverScreen,
   .endScreen,
@@ -226,6 +226,12 @@ canvas {
 
   .infoText {
     font-size: 11pt;
+  }
+}
+
+@media (max-height: 780px) {
+  .headline {
+    display: none;
   }
 }
 

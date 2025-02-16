@@ -31,22 +31,29 @@ class Skeleton extends MovableObject {
   offsetY = 40;
   offsetX = 40;
 
+  /**
+   * Represents the small enemy of the game - a skeleton.
+   * @constructor
+   */
   constructor() {
     super().loadImage(
       "./img/skeleton/Walking/0_Skeleton_Warrior_Walking_000.png"
     );
     this.positionX = 300 + Math.random() * 2200;
-    this.speed = 0.15 + Math.random() * 0.25;
+    this.speed = 0.25 + Math.random() * 0.4;
     this.loadImages(this.IMAGES_WALKING);
     this.animate();
   }
 
+  /**
+   * Defines the animation of the skeleton in different situations
+   */
   animate() {
     setStoppableInterval(() => {
       this.moveLeft();
     }, 10);
     setStoppableInterval(() => {
       this.playAnimation(this.IMAGES_WALKING);
-    }, 60);
+    }, 40);
   }
 }

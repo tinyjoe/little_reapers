@@ -1,3 +1,8 @@
+html {
+  scrollbar-color: #1c2836 chartreuse;
+  scrollbar-width: thin;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -87,7 +92,7 @@ a:hover {
   }
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (orientation: portrait) and (pointer: coarse) {
   body {
     transform: rotate(90deg);
     background-image: url("../img/game_background/3_screen_background-vertical.png") !important;

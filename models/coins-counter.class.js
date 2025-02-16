@@ -18,6 +18,11 @@ class CoinsCounter extends DrawableObject {
     "./img/counters/counter_coins/counter_coins_150.png",
   ];
 
+  /**
+   * Represents a counter for the collected coins.
+   * @constructor
+   * @param {int} count - The amount of the collected coins.
+   */
   constructor(count) {
     super();
     this.loadImages(this.COINS_COUNTER);
@@ -28,6 +33,10 @@ class CoinsCounter extends DrawableObject {
     this.setCounter(count);
   }
 
+  /**
+   * Set a counter according to the collected coins and shows the right image of the counter.
+   * @param {int} count - The count of the collected coins.
+   */
   setCounter(count) {
     let path = this.COINS_COUNTER[count];
     this.img = this.imageCache[path];

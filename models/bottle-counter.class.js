@@ -18,6 +18,11 @@ class BottleCounter extends DrawableObject {
     "./img/counters/counter_bottle/counter_bottle_15.png",
   ];
 
+  /**
+   * Represents a counter for the available bottles.
+   * @constructor
+   * @param {int} count - The count of the available bottles.
+   */
   constructor(count) {
     super();
     this.loadImages(this.BOTTLE_COUNTER);
@@ -28,6 +33,10 @@ class BottleCounter extends DrawableObject {
     this.setCounter(count);
   }
 
+  /**
+   * Set a counter according to the available bottles and shows the right image of the counter.
+   * @param {int} count - The count of the available bottles.
+   */
   setCounter(count) {
     let path = this.BOTTLE_COUNTER[count];
     this.img = this.imageCache[path];

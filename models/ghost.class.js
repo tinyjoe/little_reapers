@@ -1,4 +1,8 @@
 class Ghost extends MovableObject {
+  /**
+   * Represents a ghosts which appears in the background of the game.
+   * @constructor
+   */
   constructor() {
     super().loadImage("./img/game_background/layers/10.png");
     this.height = 150;
@@ -6,6 +10,9 @@ class Ghost extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Animates the ghost and sets the position of the ghost randomly.
+   */
   animate() {
     setStoppableInterval(() => {
       this.positionY = Math.random() * 150;

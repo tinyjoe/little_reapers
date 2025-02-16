@@ -6,6 +6,10 @@ class Coin extends MovableObject {
   speedY = 0;
   acceleration = 2;
 
+  /**
+   * Represents a coin which can be collected by the reaper.
+   * @constructor
+   */
   constructor() {
     super();
     this.loadImage("./img/elements/coin.png");
