@@ -16,6 +16,21 @@ class CoinsCounter extends DrawableObject {
     "./img/counters/counter_coins/counter_coins_130.png",
     "./img/counters/counter_coins/counter_coins_140.png",
     "./img/counters/counter_coins/counter_coins_150.png",
+    "./img/counters/counter_coins/counter_coins_160.png",
+    "./img/counters/counter_coins/counter_coins_170.png",
+    "./img/counters/counter_coins/counter_coins_180.png",
+    "./img/counters/counter_coins/counter_coins_190.png",
+    "./img/counters/counter_coins/counter_coins_200.png",
+    "./img/counters/counter_coins/counter_coins_210.png",
+    "./img/counters/counter_coins/counter_coins_220.png",
+    "./img/counters/counter_coins/counter_coins_230.png",
+    "./img/counters/counter_coins/counter_coins_240.png",
+    "./img/counters/counter_coins/counter_coins_250.png",
+    "./img/counters/counter_coins/counter_coins_260.png",
+    "./img/counters/counter_coins/counter_coins_270.png",
+    "./img/counters/counter_coins/counter_coins_280.png",
+    "./img/counters/counter_coins/counter_coins_290.png",
+    "./img/counters/counter_coins/counter_coins_300.png",
   ];
 
   /**

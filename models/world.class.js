@@ -157,8 +157,8 @@ class World {
         c.disappear(c);
         coinSound.play();
         this.count++;
+        this.coinsCounter.setCounter(this.count);
       }
-      this.coinsCounter.setCounter(this.count);
     });
   }
 

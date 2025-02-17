@@ -19,3 +19,5 @@ const SOUND_EFFECTS = [
   jumpingSound,
   reaperHurtSound,
 ];
+
+const SOUND_PATHS = SOUND_EFFECTS.map((sound) => sound.src);

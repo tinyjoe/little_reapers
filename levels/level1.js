@@ -16,7 +16,7 @@ function initLevel() {
     setForegroundObjects(),
     setReaperCoins()
   );
-  localStorage.setItem("GameSounds", JSON.stringify(SOUND_EFFECTS));
+  localStorage.setItem("gameSounds", JSON.stringify(SOUND_PATHS));
 }
 
 /**
@@ -28,7 +28,7 @@ function clearLevel() {
   enemies = [];
   backgroundGhosts = [];
   reaperCoins = [];
-  localStorage.removeItem("GameSounds");
+  localStorage.removeItem("gameSounds");
 }
 
 /**

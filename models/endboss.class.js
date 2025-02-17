@@ -77,6 +77,10 @@ class Endboss extends MovableObject {
   positionX = 2600;
   hadFirstContact = false;
 
+  /**
+   * Represents the endboss of the game.
+   * @constructor
+   */
   constructor() {
     super().loadImage("./img/endboss/Idle/Minotaur_03_Idle_000.png");
     this.speed = 1.25;
@@ -87,6 +91,9 @@ class Endboss extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Animates the endboss in different situations.
+   */
   animate() {
     setStoppableInterval(() => {
       if (this.isEndbossSpawning()) this.spawningAnimation();
@@ -96,20 +103,32 @@ class Endboss extends MovableObject {
     }, 40);
   }
 
+  /**
+   * Checks if endboss is spawning.
+   */
   isEndbossSpawning() {
     return world.reaper.positionX > 2500 && !this.hadFirstContact;
   }
 
+  /**
+   * Defines what happens when endboss is spawning.
+   */
   spawningAnimation() {
     this.playAnimation(this.IMAGES_SPAWNING);
     this.hadFirstContact = true;
   }
 
+  /**
+   * Defines what happens when endboss is hurting.
+   */
   hurtingAnimation() {
     this.playAnimation(this.IMAGES_HURTING);
     enemyHurt.play();
   }
 
+  /**
+   * Defines what happens when endboss is dying.
+   */
   dyingAnimation() {
     this.playAnimationOnce(this.IMAGES_DYING);
     endbossDyingSound.play();
@@ -118,6 +137,9 @@ class Endboss extends MovableObject {
     world.endGame();
   }
 
+  /**
+   * Defines what happens when endboss is walking.
+   */
   walkingAnimation() {
     this.playAnimation(this.IMAGES_WALKING);
     this.moveLeft();
