@@ -1,7 +1,6 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let isMuted = false;
 let gameScreen;
 let startScreen;
 let isGameOver;
@@ -21,6 +20,7 @@ function init(screenId) {
   isGameWon = false;
   initLevel();
   world = new World(canvas, keyboard);
+  showSoundButtons();
   backgroundSound.play();
 }
 
@@ -149,31 +149,53 @@ function enterFullscreen() {
 }
 
 /**
- * Mutes all sound effects of the game.
- * @param {string} soundOffId - The ID of the button, which is shown when the sound is on.
- * @param {string} soundOnId - The ID of the button, which is shown when the sound is off.
+ * Toggles all sound effects of the game.
  */
-function muteAllSounds(soundOffId, soundOnId) {
-  let soundOffButton = document.getElementById(soundOffId);
-  let soundOnButton = document.getElementById(soundOnId);
+function toggleAllSounds() {
+  let isGameMuted = localStorage.getItem("gameMuted") === "true";
+  isGameMuted = !isGameMuted;
+  localStorage.setItem("gameMuted", isGameMuted);
   SOUND_EFFECTS.forEach((s) => {
-    s.muted = true;
+    s.muted = isGameMuted;
   });
-  soundOffButton.classList.add("hidden");
-  soundOnButton.classList.remove("hidden");
+  showSoundButtons(isGameMuted);
 }
 
 /**
- * Unmutes all sound effects of the game.
- * @param {string} soundOnId - The ID of the button, which is shown when the sound is off.
- * @param {string} soundOffId - The ID of the button, which is shown when the sound is on.
+ * Template function of the sound button.
  */
-function unmuteAllSounds(soundOnId, soundOffId) {
-  let soundOffButton = document.getElementById(soundOffId);
-  let soundOnButton = document.getElementById(soundOnId);
-  SOUND_EFFECTS.forEach((s) => {
-    s.muted = false;
-  });
-  soundOffButton.classList.remove("hidden");
-  soundOnButton.classList.add("hidden");
+function renderSoundButton() {
+  let isMuted = localStorage.getItem("gameMuted") === "true";
+  if (isMuted) {
+    return `<button
+                id="soundOnButton"
+                class="soundOnButton"
+                onclick="toggleAllSounds()"
+              ></button>`;
+  } else {
+    return `<button
+    id="soundButton"
+    class="soundButton"
+    onclick="toggleAllSounds()"
+  ></button>`;
+  }
 }
+
+/**
+ * Shows the sound button according if the sound is turned off or not.
+ */
+function showSoundButtons() {
+  let soundButtonContainer = document.getElementById("soundButtonContainer");
+  soundButtonContainer.innerHtml = "";
+  soundButtonContainer.innerHTML = renderSoundButton();
+}
+
+/**
+ * Checks if the sound is turned of or not when the page is reloading.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  const isGameMuted = localStorage.getItem("gameMuted") === "true";
+  SOUND_EFFECTS.forEach((s) => {
+    s.muted = isGameMuted;
+  });
+});

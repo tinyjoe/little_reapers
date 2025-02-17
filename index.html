@@ -49,18 +49,6 @@
       <h1 id="headline" class="headline">Little Reapers</h1>
       <div id="fullscreen">
         <canvas id="gameCanvas" width="960" height="540"> </canvas>
-        <img
-          id="mobileSoundOff"
-          class="mobileButton mobileSoundButton"
-          onclick="muteAllSounds('mobileSoundOff', 'mobileSoundOn')"
-          src="./img/elements/button_sound-off.png"
-        />
-        <img
-          id="mobileSoundOn"
-          class="mobileButton hidden mobileSoundButton"
-          onclick="unmuteAllSounds('mobileSoundOn', 'mobileSoundOff')"
-          src="./img/elements/button_sound-on.png"
-        />
         <div class="mobileButtonRow">
           <div class="mobileButtonSection">
             <img
@@ -113,16 +101,7 @@
             </div>
           </div>
           <div class="settingsRow">
-            <button
-              id="soundButton"
-              class="soundButton"
-              onclick="muteAllSounds('soundButton', 'soundOnButton')"
-            ></button>
-            <button
-              id="soundOnButton"
-              class="soundOnButton hidden"
-              onclick="unmuteAllSounds('soundOnButton', 'soundButton')"
-            ></button>
+            <div id="soundButtonContainer"></div>
             <button
               id="expandButton"
               class="expandButton"

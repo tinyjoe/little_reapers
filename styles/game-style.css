@@ -185,8 +185,14 @@ canvas {
     font-size: 13pt;
   }
 
+  .gameInfoRow {
+    position: absolute;
+    top: 0px;
+    right: 20px;
+  }
+
   .keyInfoRow {
-    gap: 60px;
+    display: none;
   }
 
   .mobileButtonRow {
@@ -197,10 +203,6 @@ canvas {
     bottom: 20px;
     left: 20px;
     right: 20px;
-  }
-
-  .gameInfoRow {
-    display: none;
   }
 }
 

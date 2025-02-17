@@ -120,10 +120,6 @@
   display: none;
 }
 
-.mobileSoundButton {
-  display: none;
-}
-
 @media (max-width: 1050px) {
   .startButton {
     width: 225px;
@@ -192,11 +188,17 @@
     height: 50px;
   }
 
-  .mobileSoundButton {
-    display: block;
+  .soundButton,
+  .soundOnButton {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 0px;
+    right: 0px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .expandButton {
+    display: none;
   }
 }
 
