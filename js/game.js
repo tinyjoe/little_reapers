@@ -128,6 +128,13 @@ document.addEventListener("touchend", (e) => {
 });
 
 /**
+ * Event listener that disables contextmenu.
+ */
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+});
+
+/**
  * Request the fullscreen options for different browsers.
  */
 function requestFullscreen(element) {

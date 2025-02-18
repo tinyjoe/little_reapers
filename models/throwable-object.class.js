@@ -4,10 +4,10 @@ class ThrowableObject extends MovableObject {
   lastThrow;
 
   /**
-   * Represents the main character of the game.
+   * Represents a bottle which the reaper can throw.
    * @constructor
    * @param {int} x - The position of the object on the x-axis.
-   * @param {*} y - The position of the object on the y-axis.
+   * @param {int} y - The position of the object on the y-axis.
    */
   constructor(x, y) {
     super().loadImage("./img/elements/bottle.png");
@@ -25,7 +25,7 @@ class ThrowableObject extends MovableObject {
     this.speedY = 5;
     this.applyGravity();
     setStoppableInterval(() => {
-      this.positionX += 10;
+      this.positionX += 6;
     }, 25);
     this.lastThrow = new Date().getTime();
   }

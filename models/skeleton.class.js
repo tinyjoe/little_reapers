@@ -29,7 +29,7 @@ class Skeleton extends MovableObject {
   width = 150;
   positionY = 370;
   offsetY = 40;
-  offsetX = 40;
+  offsetX = 20;
 
   /**
    * Represents the small enemy of the game - a skeleton.
@@ -39,7 +39,7 @@ class Skeleton extends MovableObject {
     super().loadImage(
       "./img/skeleton/Walking/0_Skeleton_Warrior_Walking_000.png"
     );
-    this.positionX = 300 + Math.random() * 2200;
+    this.positionX = 300 + Math.random() * 2500;
     this.speed = 0.25 + Math.random() * 0.4;
     this.loadImages(this.IMAGES_WALKING);
     this.animate();

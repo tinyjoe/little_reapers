@@ -70,12 +70,27 @@ class Endboss extends MovableObject {
     "./img/endboss/Dying/Minotaur_03_Dying_013.png",
     "./img/endboss/Dying/Minotaur_03_Dying_014.png",
   ];
+  IMAGES_ATTACKING = [
+    "./img/endboss/Attacking/Minotaur_03_Attacking_000.png",
+    "./img/endboss/Attacking/Minotaur_03_Attacking_001.png",
+    "./img/endboss/Attacking/Minotaur_03_Attacking_002.png",
+    "./img/endboss/Attacking/Minotaur_03_Attacking_003.png",
+    "./img/endboss/Attacking/Minotaur_03_Attacking_004.png",
+    "./img/endboss/Attacking/Minotaur_03_Attacking_005.png",
+    "./img/endboss/Attacking/Minotaur_03_Attacking_006.png",
+    "./img/endboss/Attacking/Minotaur_03_Attacking_007.png",
+    "./img/endboss/Attacking/Minotaur_03_Attacking_008.png",
+    "./img/endboss/Attacking/Minotaur_03_Attacking_009.png",
+    "./img/endboss/Attacking/Minotaur_03_Attacking_010.png",
+    "./img/endboss/Attacking/Minotaur_03_Attacking_011.png",
+  ];
 
   width = 400;
   height = 300;
   positionY = 220;
   positionX = 2600;
-  hadFirstContact = false;
+  hasSpawned = false;
+  bottles = [];
 
   /**
    * Represents the endboss of the game.
@@ -88,6 +103,7 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_WALKING);
     this.loadImages(this.IMAGES_HURTING);
     this.loadImages(this.IMAGES_DYING);
+    this.loadImages(this.IMAGES_ATTACKING);
     this.animate();
   }
 
@@ -107,7 +123,18 @@ class Endboss extends MovableObject {
    * Checks if endboss is spawning.
    */
   isEndbossSpawning() {
-    return world.reaper.positionX > 2500 && !this.hadFirstContact;
+    return (
+      world.reaper.positionX > 1600 &&
+      world.reaper.positionX < 1650 &&
+      !this.hasSpawned
+    );
+  }
+
+  /**
+   * Checks if endboss is attacking.
+   */
+  isEndbossAttacking() {
+    return this.positionX - world.reaper.positionX <= 200;
   }
 
   /**
@@ -115,7 +142,7 @@ class Endboss extends MovableObject {
    */
   spawningAnimation() {
     this.playAnimation(this.IMAGES_SPAWNING);
-    this.hadFirstContact = true;
+    this.hadSpawned = true;
   }
 
   /**
@@ -141,8 +168,13 @@ class Endboss extends MovableObject {
    * Defines what happens when endboss is walking.
    */
   walkingAnimation() {
-    this.playAnimation(this.IMAGES_WALKING);
-    this.moveLeft();
-    walkingSound.play();
+    this.positionX -= this.speed;
+    this.otherDirection = true;
+    if (this.isEndbossAttacking()) {
+      this.playAnimation(this.IMAGES_ATTACKING);
+    } else {
+      this.playAnimation(this.IMAGES_WALKING);
+      walkingSound.play();
+    }
   }
 }
