@@ -88,9 +88,11 @@ class Endboss extends MovableObject {
   width = 400;
   height = 300;
   positionY = 220;
-  positionX = 2600;
+  positionX = 2900;
+  offsetX = 100;
   hasSpawned = false;
   bottles = [];
+  speed = 0.25;
 
   /**
    * Represents the endboss of the game.
@@ -116,7 +118,7 @@ class Endboss extends MovableObject {
       else if (this.isHurt()) this.hurtingAnimation();
       else if (this.isDead()) this.dyingAnimation();
       else this.walkingAnimation();
-    }, 40);
+    }, 30);
   }
 
   /**
@@ -171,6 +173,7 @@ class Endboss extends MovableObject {
     this.positionX -= this.speed;
     this.otherDirection = true;
     if (this.isEndbossAttacking()) {
+      world.reaper.offsetX = 0;
       this.playAnimation(this.IMAGES_ATTACKING);
     } else {
       this.playAnimation(this.IMAGES_WALKING);
