@@ -25,7 +25,7 @@ class ThrowableObject extends MovableObject {
     this.speedY = 5;
     this.applyGravity();
     setStoppableInterval(() => {
-      this.positionX += 6;
+      this.positionX += 3;
     }, 25);
     this.lastThrow = new Date().getTime();
   }
